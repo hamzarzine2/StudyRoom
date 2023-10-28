@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main  # Assurez-vous d'ajuster la branche en fonction de vos besoins
+      - main
 
 jobs:
   lint-and-format:
@@ -18,16 +18,19 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install les dépendances
-        run: npm i
+      - name: Change directory to project root
+        run: cd ./studyRoom
 
-      - name: Lint avec ESLint
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint with ESLint
         run: npm run lint
         continue-on-error: true
 
-      - name: Format avec Prettier
+      - name: Format with Prettier
         run: npm run format
         continue-on-error: true
 
-      - name: Test si les fichiers ont été modifiés
+      - name: Test if files have been modified
         run: git diff --exit-code
