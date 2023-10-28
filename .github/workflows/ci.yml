@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main  # Assurez-vous d'ajuster la branche en fonction de vos besoins
+
+jobs:
+  lint-and-format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout le code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install les dépendances
+        run: npm i
+
+      - name: Lint avec ESLint
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Format avec Prettier
+        run: npm run format
+        continue-on-error: true
+
+      - name: Test si les fichiers ont été modifiés
+        run: git diff --exit-code
