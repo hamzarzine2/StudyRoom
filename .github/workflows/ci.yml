@@ -19,7 +19,7 @@ jobs:
           node-version: 16
 
       - name: Change directory to project root
-        run: cd ./studyRoom
+        run: cd ../../
 
       - name: Print current directory
         run: pwd
