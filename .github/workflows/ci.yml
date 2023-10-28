@@ -21,6 +21,9 @@ jobs:
       - name: Change directory to project root
         run: cd ./studyRoom
 
+      - name: Print current directory
+        run: pwd
+      
       - name: Install dependencies
         run: npm install
 
