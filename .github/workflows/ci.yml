@@ -19,7 +19,7 @@ jobs:
           node-version: 16
 
       - name: Install les dépendances
-        run: npm install
+        run: npm i
 
       - name: Lint avec ESLint
         run: npm run lint
