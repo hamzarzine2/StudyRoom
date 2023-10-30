@@ -25,11 +25,6 @@ jobs:
 
       - name: Lint with ESLint
         run: npm run lint
-        continue-on-error: true
 
       - name: Format with Prettier
         run: npm run format
-        continue-on-error: true
-
-      - name: Test if files have been modified
-        run: git diff --exit-code
