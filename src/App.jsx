@@ -12,6 +12,7 @@ import {
   useNavigate,
   useMatch,
 } from "react-router-dom";
+import Room from "./Pages/Room";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/room/:id" element={<Room />} />
         </Routes>
       </div>
     </>

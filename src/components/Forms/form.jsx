@@ -8,6 +8,7 @@ function Form() {
   const updateInput = (e) => {
     console.log(e.target.value);
     setInput(e.target.value);
+    setNameUser(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -27,7 +28,6 @@ function Form() {
           onChange={updateInput}
         />{" "}
         <br />
-        <Button value="Create a room" event={handleSubmit} />
       </form>
     </>
   );
