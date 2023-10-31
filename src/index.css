@@ -1,3 +1,16 @@
+body {
+  background-image: url('../src/assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Optional: fixed background */
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
+}
+
+
+
+
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
