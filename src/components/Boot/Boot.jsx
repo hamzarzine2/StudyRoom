@@ -1,15 +1,15 @@
-import App from "../../App"
-import {UserProviderWrapper} from "../../contexts/UserContext"
-import {BrowserRouter as Router} from "react-router-dom"
+import App from "../../App";
+import { UserProviderWrapper } from "../../contexts/UserContext";
+import { BrowserRouter as Router } from "react-router-dom";
 
-const Boot = () =>{
-    return (
-        <UserProviderWrapper>
-            <Router>
-                <App />
-            </Router>       
-        </UserProviderWrapper>
-    )
-}
+const Boot = () => {
+  return (
+    <UserProviderWrapper>
+      <Router>
+        <App />
+      </Router>
+    </UserProviderWrapper>
+  );
+};
 
-export default Boot
+export default Boot;
