@@ -12,7 +12,6 @@ function Home() {
   return (
     <>
       <div>
-        <p>{user}</p>
         <Form />
         <Button value="Join a room" event={eventLog} />
       </div>
