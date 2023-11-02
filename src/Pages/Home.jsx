@@ -9,6 +9,7 @@ function Home() {
   const navigate = useNavigate();
   const { user } = useContext(ContextUser);
   const { createRoom } = useContext(ContextRoom);
+
   const redirectRoom = () => {
     createRoom({ id: 1, user });
     navigate("/room/" + 1);
@@ -16,14 +17,14 @@ function Home() {
   const eventLog = () => {
     console.log(user);
   };
+
   return (
-    <>
-      <div>
-        <Form />
-        <Button value="Create a room" event={redirectRoom} />
-        <Button value="Join a room" event={eventLog} />
-      </div>
-    </>
+    <div id="divHome">
+      <Form />
+      <Button value="Create a room" event={redirectRoom} />
+      <Button value="Join a room" event={eventLog} />
+    </div>
+
   );
 }
 
