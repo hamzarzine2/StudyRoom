@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { ContextUser } from "../../contexts/UserContext";
-import Button from "../Buttons/button";
 function Form() {
   const [input, setInput] = useState("");
   const { setNameUser } = useContext(ContextUser);
