@@ -1,0 +1,26 @@
+#toDoLine {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin: 5px;
+}
+
+#toDoLine p {
+  margin: 0;
+}
+
+#toDoLine.done {
+  background-color: #d1f7b5; /* Couleur de fond pour les éléments terminés */
+  text-decoration: line-through; /* Texte barré pour les éléments terminés */
+}
+
+#toDoLine.done p {
+  color: #888; /* Couleur du texte pour les éléments terminés */
+}
+
+#toDoLine.done span {
+  color: green; /* Couleur de la coche pour les éléments terminés */
+  font-size: 18px;
+  margin-left: 10px; /* Espace entre le texte et la coche */
+}
