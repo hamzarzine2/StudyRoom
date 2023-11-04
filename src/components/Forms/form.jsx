@@ -1,32 +1,23 @@
 import { useContext, useState } from "react";
-import { ContextUser } from "../../contexts/UserContext";
-function Form() {
+
+function Form(props) {
   const [input, setInput] = useState("");
-  const { setNameUser } = useContext(ContextUser);
 
   const updateInput = (e) => {
-    console.log(e.target.value);
+    e.preventDefault();
     setInput(e.target.value);
-    setNameUser(e.target.value);
+    props.setMethod(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
-    setNameUser(input);
+    props.setMethod(input);
   };
 
   return (
     <>
-      <form>
-        <input
-          type="text"
-          value={input}
-          name=""
-          id="inputName"
-          onChange={updateInput}
-        />{" "}
-        <br />
+      <form onSubmit={handleFormSubmit}>
+        <input type="text" value={input} onChange={updateInput} /> <br />
       </form>
     </>
   );

@@ -1,12 +1,7 @@
 function Customization() {
-
-
   return (
     <>
-        <div id="divCustom">
-                Customization
-        </div>
-
+      <div id="divCustom">Customization</div>
     </>
   );
 }

@@ -5,8 +5,6 @@ body {
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-
-
 }
 
 a {
@@ -18,8 +16,6 @@ a {
 a:hover {
   color: #535bf2;
 }
-
-
 
 h1 {
   font-size: 3.2em;
@@ -48,7 +44,6 @@ button:focus-visible {
 }
 
 #root {
-
   background-color: aliceblue;
   width: 100%;
   height: 100%;
@@ -70,7 +65,6 @@ button:focus-visible {
   align-items: center;
 }
 
-
 #divHome {
   justify-content: center;
   align-items: center;
@@ -84,7 +78,6 @@ button:focus-visible {
   width: 25%;
   float: left;
 }
-
 
 #divRoom2 {
   border: #1a1a1a solid;
@@ -122,9 +115,6 @@ button:focus-visible {
   height: 30%;
 
   background-color: rgba(240, 235, 235, 0.329);
-
- 
-
 }
 
 #chat-title {
@@ -141,9 +131,7 @@ button:focus-visible {
   align-items: flex-end;
   margin-top: auto;
   /* Aligne le contenu en bas de la div */
-
 }
-
 
 /*******************Todo list**************************/
 
@@ -160,7 +148,7 @@ button:focus-visible {
 }
 
 /***************************** Custom *********************************/
-#divCustom{
+#divCustom {
   background-color: white;
   color: black;
   height: 50%;
