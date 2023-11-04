@@ -14,13 +14,15 @@ function Room() {
 
   return (
     <>
-      <div id="divRoom1"><Timer /> <br />
-      <Customization />
+      <div id="divRoom1">
+        <Timer /> <br />
+        <Customization />
       </div>
       <div id="divRoom2">
         <p>
           WELCOLE {user} room id == {param}
-        </p> </div>
+        </p>{" "}
+      </div>
       <div id="divRoom3">
         <div id="divTodo">
           <TodoList />
@@ -28,7 +30,6 @@ function Room() {
 
         <Chat />
       </div>
-
     </>
   );
 }
