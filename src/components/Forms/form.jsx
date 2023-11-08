@@ -1,30 +1,26 @@
-import { useContext, useState } from 'react'
-import { ContextUser } from '../../contexts/UserContext';
-import Button from '../Buttons/button';
-function Form() {
-    const [input,setInput] = useState("");
-    const {setNameUser} = useContext(ContextUser)
+import { useContext, useState } from "react";
 
-    const updateInput = (e) => {
-      console.log(e.target.value);
-      setInput(e.target.value);
-    }
+function Form(props) {
+  const [input, setInput] = useState("");
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log(input);
-      setNameUser(input);
-    }
+  const updateInput = (e) => {
+    e.preventDefault();
+    setInput(e.target.value);
+    props.setMethod(e.target.value);
+  };
 
-    return (
-      <>
-        <form>
-            <input type="text" value ={input} name="" id="inputName" onChange={updateInput} /> <br />
-            <Button value="Create a room" event={handleSubmit} />
-        </form>
-      </>
-    )
-  }
-  
-  export default Form
-  
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    props.setMethod(input);
+  };
+
+  return (
+    <>
+      <form onSubmit={handleFormSubmit}>
+        <input type="text" value={input} onChange={updateInput} /> <br />
+      </form>
+    </>
+  );
+}
+
+export default Form;
