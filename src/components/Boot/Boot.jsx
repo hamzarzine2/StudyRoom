@@ -6,15 +6,15 @@ import { ToDoProviderWrapper } from "../../contexts/ToDoContext";
 
 const Boot = () => {
   return (
-    <ToDoProviderWrapper>
+    <UserProviderWrapper>
       <RoomProviderWrapper>
-        <UserProviderWrapper>
+        <ToDoProviderWrapper>
           <Router>
             <App />
           </Router>
-        </UserProviderWrapper>
+        </ToDoProviderWrapper>
       </RoomProviderWrapper>
-    </ToDoProviderWrapper>
+    </UserProviderWrapper>
   );
 };
 
