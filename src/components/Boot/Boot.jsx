@@ -8,16 +8,16 @@ import { SocketProvider } from "../../contexts/SocketContext";
 const Boot = () => {
   return (
     <UserProviderWrapper>
-    <RoomProviderWrapper>
-      <SocketProvider>
-        <ToDoProviderWrapper>
-          <Router>
-            <App />
-          </Router>
-        </ToDoProviderWrapper>
-      </SocketProvider>
-    </RoomProviderWrapper>
-  </UserProviderWrapper>
+      <RoomProviderWrapper>
+        <SocketProvider>
+          <ToDoProviderWrapper>
+            <Router>
+              <App />
+            </Router>
+          </ToDoProviderWrapper>
+        </SocketProvider>
+      </RoomProviderWrapper>
+    </UserProviderWrapper>
   );
 };
 

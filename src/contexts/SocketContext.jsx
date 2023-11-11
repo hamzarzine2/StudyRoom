@@ -1,9 +1,8 @@
 // SocketContext.js
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 import { io } from "socket.io-client";
 
 const SocketContext = createContext();
-
 
 const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
@@ -16,26 +15,22 @@ const SocketProvider = ({ children }) => {
       console.log(message);
     });
 
-  
-
-    setSocket(socket2)
+    setSocket(socket2);
   };
 
-  const updateToDo =(toDoList)=>{
-    console.log("rezerz",toDoList);
+  const updateToDo = (toDoList) => {
+    console.log("rezerz", toDoList);
     socket.emit("update-socket", toDoList, "test");
-  }
+  };
 
   const value = {
     socket,
     socketInit,
-    updateToDo
+    updateToDo,
   };
 
   return (
-    <SocketContext.Provider value={value}>
-      {children}
-    </SocketContext.Provider>
+    <SocketContext.Provider value={value}>{children}</SocketContext.Provider>
   );
 };
 
