@@ -20,7 +20,7 @@ function Room() {
       </div>
       <div id="divRoom2">
         <p>
-          WELCOME {user} room id == {param}
+          WELCOME {user} room id = {param}
         </p>{" "}
       </div>
       <div id="divRoom3">
