@@ -23,7 +23,6 @@ const ToDoProviderWrapper = (props) => {
   };
 
   const setDone = (toDoNote) => {
-    // Recherche de l'index de l'élément à marquer comme terminé
     const index = toDoList.indexOf(toDoNote);
     if (index !== -1) {
       const changedToDo = { ...toDoList[index] };

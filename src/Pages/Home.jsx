@@ -14,7 +14,8 @@ function Home() {
   const redirectRoom = () => {
     createRoom({ id: 1, user });
     navigate("/room/" + 1);
-    socketInit(3001);
+    socketInit(1);
+    
   };
   const eventLog = () => {
     console.log(user);
