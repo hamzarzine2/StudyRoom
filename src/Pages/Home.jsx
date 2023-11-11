@@ -4,17 +4,17 @@ import { ContextRoom } from "../contexts/RoomContext";
 import Form from "../components/Forms/form";
 import Button from "../components/Buttons/button";
 import { useNavigate } from "react-router-dom";
-import socketInit from "../socket/socketUtil";
+import { SocketContext } from "../contexts/SocketContext";
 
 function Home() {
   const navigate = useNavigate();
   const { user, setNameUser } = useContext(ContextUser);
   const { createRoom } = useContext(ContextRoom);
-
+  const { socketInit } = useContext(SocketContext);
   const redirectRoom = () => {
     createRoom({ id: 1, user });
     navigate("/room/" + 1);
-    socketInit(3001);
+    socketInit(1);
   };
   const eventLog = () => {
     console.log(user);
