@@ -1,4 +1,5 @@
 import React from "react";
+import "./timer.css";
 import { useEffect, useState } from "react";
 
 const Timer = () => {
@@ -18,7 +19,7 @@ const Timer = () => {
     }
   }, [second, minute, hour]);
   return (
-    <div>
+    <div id="divTimer">
       <h1 id="timer">
         {" "}
         {hour}h:{minute}m:{second}s
@@ -26,12 +27,5 @@ const Timer = () => {
     </div>
   );
 };
-/** 
-  return (
-      <div>
-          <h1 id="timer"> 09:30 </h1>
-      </div>
-  );
-*/
 
 export default Timer;
