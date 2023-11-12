@@ -22,13 +22,12 @@ function Room() {
         <p>
           WELCOME {user} room id = {param}
         </p>{" "}
+        <Chat />
       </div>
       <div id="divRoom3">
         <div id="divTodo">
           <TodoList />
         </div>
-
-        <Chat />
       </div>
     </>
   );

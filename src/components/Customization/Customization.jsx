@@ -1,14 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Button from "../Buttons/button";
 
 const Customization = () => {
 
-  const [fontFamily, setFontFamily] = useState('Arial, sans-serif');
-  const [backgroundImage, setBackgroundImage] = useState('');
-  const divBackground = document.getElementById("root");
   const divBody = document.querySelector("body");
+  const divBackground = document.getElementById("root");
+  const defaultBackground = window.getComputedStyle(divBackground).backgroundImage;
+  const btnFontSize = document.getElementById("btnFontSize");
+
+  const [fontFamily, setFontFamily] = useState('Arial, sans-serif');
+  const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
+  const [fontSize, setFontSize] = useState(16);
+  const fontOptions = [
+    "Arial, sans-serif",
+    "Times New Roman, serif",
+    "Courier New, monospace",
+    "Georgia, serif",
+    "Verdana, sans-serif",
+    "Impact, sans-serif",
+    "Comic Sans MS, cursive",
+    "Trebuchet MS, sans-serif",
+    "Palatino Linotype, serif",
+    "Lucida Console, monospace"
+  ];
+
 
   const handleFontFamilyChange = (e) => {
     setFontFamily(e.target.value);
+  };
+
+  const handleFontSizeChange = (e) => {
+    setFontSize(e.target.value);
   };
 
   const handleImageChange = (e) => {
@@ -17,20 +39,35 @@ const Customization = () => {
       const reader = new FileReader();
       reader.onload = (event) => {
         setBackgroundImage(event.target.result);
-        divBackground.style.backgroundImage = `url(${event.target.result})`
       };
       reader.readAsDataURL(file);
 
     }
   };
 
-  divBody.style.fontFamily = `${fontFamily}`;
+  useEffect(() => {
+    divBackground.style.backgroundImage = `url(${backgroundImage})`
+  }, [backgroundImage]);
 
+  useEffect(() => {
+    divBody.style.fontFamily = `${fontFamily}`;
+  }, [fontFamily]);
+
+  useEffect(() => {
+    divBody.style.fontSize = `${fontSize}px`;
+  }, [fontSize]);
+
+  /**
+   btnFontSize.addEventListener("click", function () {
+         divBody.style.fontSize = `${fontSize}px`;
+      }); 
+  
+   */
   return (
     <>
       <div id="divCustom">
         <h1> Customization </h1>
-        
+
         <label>
           Image de fond:
           <input
@@ -43,11 +80,20 @@ const Customization = () => {
         <label>
           Police:
           <select value={fontFamily} onChange={handleFontFamilyChange}>
-            <option value="Arial, sans-serif">Arial</option>
-            <option value="Times New Roman, serif">Times New Roman</option>
-            {/* Ajoutez d'autres options de police selon vos besoins */}
+            {fontOptions.map((option, index) => (
+              <option key={index} value={option}>
+                {option.split(",")[0]} {/* Affiche seulement le nom de la police sans les alternatives */}
+              </option>
+            ))}
           </select>
         </label>
+        <br />
+        <label>
+          Taille de la police:
+        </label>
+        <input type="number" min="10" max="50" value={fontSize} onChange={handleFontSizeChange} />
+        <button type="submit" id="btnFontSize">  </button>
+        <Button event={handleFontSizeChange} value={"Send"} />
       </div>
     </>
   );

@@ -84,7 +84,6 @@ button:focus-visible {
   height: 100%;
   width: 50%;
   float: left;
-  background-color: white;
   color: black;
   text-align: center;
 }
@@ -111,8 +110,7 @@ button:focus-visible {
   bottom: 0;
   color: black;
   text-align: center;
-  /* Centre le contenu */
-  height: 30%;
+  height: auto;
 
   background-color: rgba(240, 235, 235, 0.329);
 }
@@ -130,7 +128,7 @@ button:focus-visible {
   flex-direction: row;
   align-items: flex-end;
   margin-top: auto;
-  /* Aligne le contenu en bas de la div */
+  
 }
 
 /*******************Todo list**************************/

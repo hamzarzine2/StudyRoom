@@ -1,3 +1,5 @@
+import { Input } from 'antd';
+
 const Chat = () => {
   return (
     <>
@@ -9,8 +11,8 @@ const Chat = () => {
         </div>
       </div>
       <div id="message-input">
-        <input name="usermsg" type="text" id="usermsg" />
-        <input name="submitmsg" type="submit" id="submitmsg" value="Send" />
+       
+        <Input placeholder="Basic usage" />;
       </div>
     </>
   );
