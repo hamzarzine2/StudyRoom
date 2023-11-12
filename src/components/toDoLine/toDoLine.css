@@ -1,26 +1,48 @@
+
 #toDoLine {
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  border: 1px solid #ccc;
-  margin: 5px;
-}
-
-#toDoLine p {
-  margin: 0;
-}
-
-#toDoLine.done {
-  background-color: #d1f7b5; /* Couleur de fond pour les éléments terminés */
-  text-decoration: line-through; /* Texte barré pour les éléments terminés */
-}
-
-#toDoLine.done p {
-  color: #888; /* Couleur du texte pour les éléments terminés */
-}
-
-#toDoLine.done span {
-  color: green; /* Couleur de la coche pour les éléments terminés */
-  font-size: 18px;
-  margin-left: 10px; /* Espace entre le texte et la coche */
-}
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1); /* Reduce alpha for less visibility */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    width: 100%; /* Make ToDoLine take up full width */
+  }
+  
+  #toDoLine p {
+    margin: 0;
+    font-size: 16px;
+    flex-grow: 1;
+    word-wrap: break-word;
+    color: #000; /* Set text color to black */
+  }
+  
+  /* Style for the "FINI" button */
+  .buttonFinish {
+    padding: 10px 15px;
+    background-color: #dc3545; /* Change button color to red (rosy) */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .buttonFinish:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }
+  
+  /* Style for the checkmark */
+  #toDoLine span {
+    font-size: 18px;
+    color: rgb(66, 193, 98); /* Change checkmark color to violet */
+    margin-left: 10px;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+  }
+  
