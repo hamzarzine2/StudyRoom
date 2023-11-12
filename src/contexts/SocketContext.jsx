@@ -1,31 +1,31 @@
 // SocketContext.js
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useState } from "react";
 import { io } from "socket.io-client";
 
 const SocketContext = createContext();
 
 const SocketProvider = ({ children }) => {
-  const [socket, setSocket] = useState(null);
+  const [socket, setSocket] = useState(io("http://localhost:4001"));
 
-  const socketInit = (roomId) => {
-    let socket2 = io("http://localhost:4001");
-    socket2.emit("join room", "test");
-    socket2.emit("chat message", "test", "test");
-    socket2.on("chat message", (message) => {
-      console.log(message);
-    });
+  socket.on("chat message", (message) => {
+    console.log(message);
+  });
 
-    setSocket(socket2);
+  // socket.on("")
+  
+  const joinRoom = (roomId) => {
+    console.log("joining room ", roomId)
+    socket.emit("join room", roomId);
   };
 
   const updateToDo = (toDoList) => {
-    console.log("rezerz", toDoList);
-    socket.emit("update-socket", toDoList, "test");
+    console.log("update-todolist ", toDoList);
+    socket.emit("update-todolist", toDoList);
   };
 
   const value = {
     socket,
-    socketInit,
+    joinRoom,
     updateToDo,
   };
 

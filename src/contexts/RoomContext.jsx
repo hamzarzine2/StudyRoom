@@ -4,15 +4,16 @@ import { v4 as uuidv4 } from "uuid";
 const ContextRoom = React.createContext(null);
 
 const RoomProviderWrapper = (props) => {
-  const [room, setRoom] = useState({ id: "", users: [] });
+  const [room, setRoom] = useState({ id: "default", users: [] });
 
-  const createRoom = (newRoom) => {
-    setRoom(newRoom);
+  const setRoomId = (newRoomId) => {
+    setRoom({ ...room, id: newRoomId });
   };
 
   const exposed = {
     room,
-    createRoom,
+    setRoom,
+    setRoomId,
   };
 
   return (
