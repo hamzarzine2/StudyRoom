@@ -3,21 +3,17 @@ import React from "react";
 const Form = (props) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    props.onSubmit(); 
+    props.onSubmit();
   };
 
   const handleInputChange = (e) => {
-    props.setMethod(e.target.value)
+    props.setMethod(e.target.value);
   };
 
   return (
     <>
       <form onSubmit={handleFormSubmit}>
-        <input
-          type="text"
-          value={props.input}
-          onChange={handleInputChange}
-        />{" "}
+        <input type="text" value={props.input} onChange={handleInputChange} />{" "}
         <br />
       </form>
     </>

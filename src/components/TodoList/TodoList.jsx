@@ -4,7 +4,7 @@ import ToDoLine from "../toDoLine/toDoLine";
 import Form from "../Forms/form";
 import Button from "../Buttons/button";
 import { SocketContext } from "../../contexts/SocketContext";
-import './toDoList.css';
+import "./toDoList.css";
 
 const TodoList = () => {
   const [input, setInput] = useState("");
@@ -36,7 +36,7 @@ const TodoList = () => {
       ))}
       <Form setMethod={setInput} input={input} onSubmit={handleFormSubmit} />
       <div className="buttonContainer">
-        <Button event={handleButtonSubmit} value={"Save"} class="saveButton"/>
+        <Button event={handleButtonSubmit} value={"Save"} class="saveButton" />
       </div>
     </div>
   );

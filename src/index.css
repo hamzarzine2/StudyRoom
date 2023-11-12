@@ -22,7 +22,6 @@ h1 {
   line-height: 1.1;
 }
 
-
 #root {
   background-color: aliceblue;
   width: 100%;
@@ -119,8 +118,6 @@ h1 {
   border: #1a1a1a solid;
   height: 65%;
 }
-
-
 
 /***************************** Custom *********************************/
 #divCustom {
