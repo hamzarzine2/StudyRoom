@@ -1,20 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { SocketContext } from "./SocketContext";
 
 const ContextToDO = React.createContext(null);
 
 const ToDoProviderWrapper = (props) => {
   let newToDo = { id: -1, name: "", done: false };
-
   const [toDoList, setToDo] = useState([
     { id: 1, name: "test 1", done: false },
     { id: 2, name: "test 2", done: true },
   ]);
+  const { socket, updateToDo } = useContext(SocketContext); // Utilisez le hook useSocket
+
+  socket.on("updated-todolist", (newToDoList) => {
+    setToDoList(newToDoList);
+  });
+
+  socket.on("get-todolist", (socketId) => {
+    socket.emit("return-todolist", toDoList, socketId);
+  });
 
   const getToDo = () => toDoList;
   const addToDo = () => {
-    console.log(newToDo);
-    setToDo([...toDoList, newToDo]);
-    console.log(toDoList);
+    const updatedToDoList = [...toDoList, newToDo];
+    setToDoList(updatedToDoList);
+    updateToDo(updatedToDoList);
   };
 
   const setNew = (content) => {
@@ -23,7 +32,6 @@ const ToDoProviderWrapper = (props) => {
   };
 
   const setDone = (toDoNote) => {
-    // Recherche de l'index de l'élément à marquer comme terminé
     const index = toDoList.indexOf(toDoNote);
     if (index !== -1) {
       const changedToDo = { ...toDoList[index] };
@@ -31,7 +39,12 @@ const ToDoProviderWrapper = (props) => {
       const updatedToDoList = [...toDoList];
       updatedToDoList[index] = changedToDo;
       setToDo(updatedToDoList);
+      updateToDo(updatedToDoList);
     }
+  };
+
+  const setToDoList = (toDoList) => {
+    setToDo(toDoList);
   };
 
   const exposed = {
@@ -39,6 +52,7 @@ const ToDoProviderWrapper = (props) => {
     addToDo,
     setNew,
     setDone,
+    setToDoList,
   };
 
   return (

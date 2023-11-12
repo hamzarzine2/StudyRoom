@@ -4,29 +4,22 @@ import { ContextRoom } from "../contexts/RoomContext";
 import Form from "../components/Forms/form";
 import Button from "../components/Buttons/button";
 import { useNavigate } from "react-router-dom";
-import socketInit from "../socket/socketUtil";
-import { v4 as uuidv4 } from 'uuid';
+import { SocketContext } from "../contexts/SocketContext";
 
 function Home() {
   const navigate = useNavigate();
   const { user, setNameUser } = useContext(ContextUser);
-  const { createRoom } = useContext(ContextRoom);
-
+  const { room, setRoomId } = useContext(ContextRoom);
   const redirectRoom = () => {
-    const userId = uuidv4();
-    createRoom({ id: userId, user });
-    navigate("/room/" + userId);
-    socketInit(3001);
-  };
-  const eventLog = () => {
-    console.log(user);
+    console.log("room ", room);
+    navigate("/room/" + room.id);
   };
 
   return (
     <div id="divHome">
       <Form setMethod={setNameUser} />
-      <Button value="Create a room" event={redirectRoom} />
-      <Button value="Join a room" event={eventLog} />
+      <Form setMethod={setRoomId} />
+      <Button value="Join a room" event={redirectRoom} />
     </div>
   );
 }
