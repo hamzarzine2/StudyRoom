@@ -75,14 +75,6 @@ h1 {
   float: left;
 }
 
-/********************* Timer *****************************/
-#timer {
-  border: #1a1a1a solid;
-  background-color: #1a1a1a;
-  border-radius: 10px 10px 10px 10px;
-  text-align: center;
-}
-
 /*************************** Chat **********************/
 #divChat {
   border: #1a1a1a solid;
