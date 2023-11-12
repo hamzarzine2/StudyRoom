@@ -9,7 +9,7 @@ const ToDoProviderWrapper = (props) => {
     { id: 1, name: "test 1", done: false },
     { id: 2, name: "test 2", done: true },
   ]);
-  const { socket, updateToDo } = useContext(SocketContext); // Utilisez le hook useSocket
+  const { updateToDo } = useContext(SocketContext); // Utilisez le hook useSocket
 
   const getToDo = () => toDoList;
   const addToDo = () => {

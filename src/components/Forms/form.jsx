@@ -1,26 +1,23 @@
-import { useContext, useState } from "react";
+import React from "react";
 
-function Form(props) {
-  const [input, setInput] = useState("");
-
-  const updateInput = (e) => {
-    e.preventDefault();
-    setInput(e.target.value);
-    props.setMethod(e.target.value);
-  };
-
+const Form = (props) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    props.setMethod(input);
+    props.onSubmit();
+  };
+
+  const handleInputChange = (e) => {
+    props.setMethod(e.target.value);
   };
 
   return (
     <>
       <form onSubmit={handleFormSubmit}>
-        <input type="text" value={input} onChange={updateInput} /> <br />
+        <input type="text" value={props.input} onChange={handleInputChange} />{" "}
+        <br />
       </form>
     </>
   );
-}
+};
 
 export default Form;

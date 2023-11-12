@@ -7,7 +7,7 @@ const SocketContext = createContext();
 const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
-  const socketInit = (roomId) => {
+  const socketInit = () => {
     let socket2 = io("http://localhost:4001");
     socket2.emit("join room", "test");
     socket2.emit("chat message", "test", "test");
@@ -19,7 +19,6 @@ const SocketProvider = ({ children }) => {
   };
 
   const updateToDo = (toDoList) => {
-    console.log("rezerz", toDoList);
     socket.emit("update-socket", toDoList, "test");
   };
 
