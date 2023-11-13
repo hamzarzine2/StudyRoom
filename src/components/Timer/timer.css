@@ -1,0 +1,25 @@
+#divTimer {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Take up full available width */
+  margin-top: 20px; /* Add margin-top for separation */
+}
+
+#timer {
+  font-size: 24px; /* Increased font size */
+  color: #333;
+  padding: 16px; /* Increased padding */
+  border-radius: 8px; /* Increased border-radius */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 10px;
+  width: 100%; /* Take up full available width */
+  position: relative; /* Position relative for the ::before pseudo-element */
+}
+
+/* Additional styling, adjust as needed */
+#timer::before {
+  content: "\1F550"; /* Unicode character for a clock, you can replace it with your preferred icon or remove it */
+  font-size: 20px; /* Increased font size for the clock icon */
+  margin-right: 5px;
+}

@@ -9,22 +9,17 @@ import { SocketContext } from "../contexts/SocketContext";
 function Home() {
   const navigate = useNavigate();
   const { user, setNameUser } = useContext(ContextUser);
-  const { createRoom } = useContext(ContextRoom);
-  const { socketInit } = useContext(SocketContext);
+  const { room, setRoomId } = useContext(ContextRoom);
   const redirectRoom = () => {
-    createRoom({ id: 1, user });
-    navigate("/room/" + 1);
-    socketInit(1);
-  };
-  const eventLog = () => {
-    console.log(user);
+    console.log("room ", room);
+    navigate("/room/" + room.id);
   };
 
   return (
     <div id="divHome">
       <Form setMethod={setNameUser} />
-      <Button value="Create a room" event={redirectRoom} />
-      <Button value="Join a room" event={eventLog} />
+      <Form setMethod={setRoomId} />
+      <Button value="Join a room" event={redirectRoom} />
     </div>
   );
 }
