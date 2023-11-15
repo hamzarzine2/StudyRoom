@@ -19,6 +19,7 @@ const ToDoProviderWrapper = (props) => {
   });
 
   const getToDo = () => toDoList;
+  
   const addToDo = (newToDo) => {
     const updatedToDoList = [...toDoList, newToDo];
     setToDoList(updatedToDoList);

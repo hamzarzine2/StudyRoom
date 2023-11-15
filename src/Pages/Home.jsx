@@ -11,7 +11,6 @@ function Home() {
   const { user, setNameUser } = useContext(ContextUser);
   const { room, setRoomId } = useContext(ContextRoom);
   const redirectRoom = () => {
-    console.log("room ", room);
     navigate("/room/" + room.id);
   };
 

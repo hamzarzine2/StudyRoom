@@ -6,7 +6,6 @@ const UserProviderWrapper = (props) => {
   const [user, setUser] = useState("userName");
 
   const setNameUser = (newName) => {
-    console.log(newName);
     setUser(newName);
   };
 
