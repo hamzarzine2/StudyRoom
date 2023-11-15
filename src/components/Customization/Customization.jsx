@@ -1,16 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "../Buttons/button";
+import "./Customization.css"
 
 const Customization = () => {
 
-  const divBody = document.querySelector("body");
+  // const divBody = document.querySelector("body");
   const divBackground = document.getElementById("root");
+  const divRoot = document.getElementById("root");
   const defaultBackground = window.getComputedStyle(divBackground).backgroundImage;
-  const btnFontSize = document.getElementById("btnFontSize");
 
   const [fontFamily, setFontFamily] = useState('Arial, sans-serif');
   const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
   const [fontSize, setFontSize] = useState(16);
+  const [fontColor, setFontColor] = useState('#000000');
   const fontOptions = [
     "Arial, sans-serif",
     "Times New Roman, serif",
@@ -23,7 +25,6 @@ const Customization = () => {
     "Palatino Linotype, serif",
     "Lucida Console, monospace"
   ];
-
 
   const handleFontFamilyChange = (e) => {
     setFontFamily(e.target.value);
@@ -45,55 +46,50 @@ const Customization = () => {
     }
   };
 
-  useEffect(() => {
+  const handleFontColorChange = (e) => {
+    setFontColor(e.target.value);
+  };
+
+  const handleAllChanges = () => {
     divBackground.style.backgroundImage = `url(${backgroundImage})`
-  }, [backgroundImage]);
+    divRoot.style.fontFamily = `${fontFamily}`;
+    divRoot.style.fontSize = `${fontSize}px`;
+    divRoot.style.color = `${fontColor}`;
+  };
 
-  useEffect(() => {
-    divBody.style.fontFamily = `${fontFamily}`;
-  }, [fontFamily]);
-
-  useEffect(() => {
-    divBody.style.fontSize = `${fontSize}px`;
-  }, [fontSize]);
-
-  /**
-   btnFontSize.addEventListener("click", function () {
-         divBody.style.fontSize = `${fontSize}px`;
-      }); 
-  
-   */
   return (
     <>
       <div id="divCustom">
         <h1> Customization </h1>
 
         <label>
-          Image de fond:
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-        </label>
+          Image de fond: </label>
+        <input type="file" accept="image/*" onChange={handleImageChange} />
         <br />
         <label>
-          Police:
-          <select value={fontFamily} onChange={handleFontFamilyChange}>
-            {fontOptions.map((option, index) => (
-              <option key={index} value={option}>
-                {option.split(",")[0]} {/* Affiche seulement le nom de la police sans les alternatives */}
-              </option>
-            ))}
-          </select>
-        </label>
+          Police: </label>
+        <select value={fontFamily} onChange={handleFontFamilyChange}>
+          {fontOptions.map((option, index) => (
+            <option key={index} value={option}>
+              {option.split(",")[0]} {/* Affiche seulement le nom de la police sans les alternatives */}
+            </option>
+          ))}
+        </select>
+
         <br />
         <label>
           Taille de la police:
         </label>
         <input type="number" min="10" max="50" value={fontSize} onChange={handleFontSizeChange} />
-        <button type="submit" id="btnFontSize">  </button>
-        <Button event={handleFontSizeChange} value={"Send"} />
+
+        <br />
+        <label>
+          Couleur de la police:
+        </label>
+        <input type="color" value={fontColor} onChange={handleFontColorChange} />
+        <br />
+
+        <Button event={handleAllChanges} value={"Save"} class="btnSave" />
       </div>
     </>
   );

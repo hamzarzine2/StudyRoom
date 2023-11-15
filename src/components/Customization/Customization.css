@@ -1,0 +1,13 @@
+.btnSave {
+    padding: 12px 20px;
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btnSave:hover {
+    background-color: darkslategray;
+}

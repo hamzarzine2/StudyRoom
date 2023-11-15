@@ -22,10 +22,8 @@ function Room() {
       </div>
       <div id="divRoom2">
         <p>
-          WELCOME {user} room id = {param}
           WELCOME {user} room id == {roomId}
         </p>{" "}
-        <Chat />
       </div>
       <div id="divRoom3">
         <div id="divTodo">
