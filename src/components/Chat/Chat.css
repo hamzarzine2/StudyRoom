@@ -1,4 +1,4 @@
-#todo {
+.chat {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -32,7 +32,7 @@ input[type="text"] {
 }
 
 /* Style for Button component */
-.sendButton {
+.saveButton {
   padding: 12px 20px;
   background-color: #28a745;
   color: #fff;
@@ -42,7 +42,7 @@ input[type="text"] {
   font-size: 16px;
 }
 
-.sendButton:hover {
+.saveButton:hover {
   background-color: #218838;
 }
 

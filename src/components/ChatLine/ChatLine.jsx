@@ -1,3 +1,5 @@
+import './ChatLine.css';
+
 const ChatLine = ({ props }) => {
   const { user, message } = props;
   
