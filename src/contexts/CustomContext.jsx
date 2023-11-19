@@ -5,16 +5,17 @@ import background2 from "../assets/background2.jpg";
 import background3 from "../assets/background3.jpg";
 
 const ContextCustom = React.createContext(null);
-const divRoot = document.getElementById("root");
-const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
+
 
 const CustomProviderWrapper = (props) => {
 
+  const divRoot = document.getElementById("root");
+const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
   // const { socket } = useContext(SocketContext);
   const [fontFamily, setFontFamily] = useState('Arial, sans-serif');
   const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
   const [fontSize, setFontSize] = useState(16);
-  const [fontColor, setFontColor] = useState('#000000');
+  const [fontColor, setFontColor] = useState('#0000FF');
 
   /** 
   const [custom, setCustom] = useState({

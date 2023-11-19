@@ -5,7 +5,6 @@ import "./Customization.css"
 
 const Customization = () => {
 
-
   const { 
     getFontSize,
     getfontFamily,
@@ -34,7 +33,9 @@ const Customization = () => {
 
 
   const handleFontColorChange = (e) => {
+    console.log(e.target.value);
     setCustomFontColor(e.target.value);
+    console.log(e.target.value);
   };
 
 
@@ -44,12 +45,13 @@ const Customization = () => {
   };
 
   const renderBackgroundOptions = () => {
-
+    const noBullets = "list-style-type:none;";
     return (
-      <ul>
+      <ul id="listBg">
         {backgroundOptions.map((key, index) => (
           <li key={index}>
             <Button value={`Background ${index + 1}`} event={() => handleBackgroundChange(key)} />
+            <img src={key} alt={`Thumbnail ${index}`} height={50} />
             <br />
           </li>
         ))}

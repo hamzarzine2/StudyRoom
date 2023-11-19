@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ContextUser } from "../contexts/UserContext";
 import Timer from "../components/Timer/Timer";
 import { useParams } from "react-router-dom";
@@ -11,16 +11,26 @@ function Room() {
   const { user } = useContext(ContextUser);
   const { joinRoom } = useContext(SocketContext);
   const roomId = useParams().id;
-
+  const [hidden, setHidden] = useState(false);
   joinRoom(roomId);
+
+  const toggleVisibility = () => {
+    setHidden(!hidden);
+  };
 
   return (
     <>
-      <div id="divRoom1">
-        <Timer /> <br />
-        <Customization />
-      </div>
+        {hidden &&
+          <div id="divRoom1">
+            <Customization />
+          </div>
+        }
+      
+
+
       <div id="divRoom2">
+      <Timer />
+      <button onClick={toggleVisibility}>Cliquez pour afficher/cacher</button>
         <p>
           WELCOME {user} room id == {roomId}
         </p>{" "}
