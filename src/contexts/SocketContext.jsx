@@ -5,32 +5,33 @@ import { io } from "socket.io-client";
 const SocketContext = createContext();
 
 const SocketProvider = ({ children }) => {
-  const [socket, setSocket] = useState(io("http://localhost:4001"));
-
-  socket.on("chat message", (message) => {
-    console.log(message);
-  });
-
-  // socket.on("")
+  const [socket, setSocket] = useState(io("http://localhost:4001", {
+    transports: ["websocket"],
+  }));
   
   const joinRoom = (roomId) => {
-    console.log("joining room ", roomId)
     socket.emit("join room", roomId);
   };
 
-  const updateToDo = (toDoList) => {
-    console.log("update-todolist ", toDoList);
+  const updateToDoList = (toDoList) => {
     socket.emit("update-todolist", toDoList);
+  };
+
+  const updateChat = (chat) => {
+    socket.emit("update-chat", chat);
   };
 
   const value = {
     socket,
     joinRoom,
-    updateToDo,
+    updateToDoList,
+    updateChat,
   };
 
   return (
-    <SocketContext.Provider value={value}>{children}</SocketContext.Provider>
+    <SocketContext.Provider value={value}>
+      {children}
+    </SocketContext.Provider>
   );
 };
 

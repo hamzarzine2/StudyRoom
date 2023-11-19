@@ -5,19 +5,22 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ToDoProviderWrapper } from "../../contexts/ToDoContext";
 import { CustomProviderWrapper } from "../../contexts/CustomContext";
 import { SocketProvider } from "../../contexts/SocketContext";
+import { ChatProviderWrapper } from "../../contexts/ChatContext";
 
 const Boot = () => {
   return (
     <UserProviderWrapper>
       <SocketProvider>
         <RoomProviderWrapper>
-          <CustomProviderWrapper>
+          <ChatProviderWrapper>
+            <CustomProviderWrapper>
             <ToDoProviderWrapper>
-              <Router>
-                <App />
-              </Router>
-            </ToDoProviderWrapper>
-            </CustomProviderWrapper>
+                <Router>
+                  <App />
+                </Router>
+              </ToDoProviderWrapper>
+              </CustomProviderWrapper>
+          </ChatProviderWrapper>
         </RoomProviderWrapper>
       </SocketProvider>
     </UserProviderWrapper>
