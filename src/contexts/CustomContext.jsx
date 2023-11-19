@@ -1,51 +1,106 @@
 import React, { useState, useContext } from "react";
 import { SocketContext } from "./SocketContext";
+import background from "../assets/background.jpg";
+import background2 from "../assets/background2.jpg";
+import background3 from "../assets/background3.jpg";
 
 const ContextCustom = React.createContext(null);
+const divRoot = document.getElementById("root");
+const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
 
 const CustomProviderWrapper = (props) => {
-  let newToDo = { id: -1, name: "", done: false };
 
-  const [ custom, setCustom ] = useState({
-    backgroundImage: "",
-    fontSize: "",
-    fontColor: "",
-    fontFamily: ""
+  // const { socket } = useContext(SocketContext);
+  const [fontFamily, setFontFamily] = useState('Arial, sans-serif');
+  const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
+  const [fontSize, setFontSize] = useState(16);
+  const [fontColor, setFontColor] = useState('#000000');
+
+  /** 
+  const [custom, setCustom] = useState({
+    backgroundImage: defaultBackground,
+    fontSize: 16,
+    fontColor: "#000000",
+    fontFamily: "Arial, sans-serif"
   });
+*/
+  const backgroundOptions = [
+    `${background}`,
+    `${background2}`,
+    `${background3}`,
+  ];
 
-  const { socket, updateCustom } = useContext(SocketContext); // Utilisez le hook useSocket
+  const mapBackground = {
+    "/src/assets/background.jpg": background,
+    "/src/assets/background2.jpg": background2,
+    "/src/assets/background3.jpg": background3,
+  }
 
-  socket.on("updated-todolist", (newToDoList) => {
-    setToDoList(newToDoList);
-  });
+  const fontFamilyOptions = [
+    "Arial, sans-serif",
+    "Times New Roman, serif",
+    "Courier New, monospace",
+    "Georgia, serif",
+    "Verdana, sans-serif",
+    "Impact, sans-serif",
+    "Comic Sans MS, cursive",
+    "Trebuchet MS, sans-serif",
+    "Palatino Linotype, serif",
+    "Lucida Console, monospace"
+  ];
 
-  socket.on("get-todolist", (socketId) => {
-    socket.emit("return-todolist", toDoList, socketId);
-  });
+  const getfontFamily = () => fontFamily;
 
-  const getCustom = () => custom;
-  const addCustom = () => {
-    const updatedToDoList = [...custom, newToDo];
-    setToDoList(updatedToDoList);
-    updateToDo(updatedToDoList);
+  const getFontSize = () => fontSize;
+
+  const getfontColor = () => fontColor;
+
+
+  const getfontFamilyOptions = () => fontFamilyOptions;
+
+  const getbackgroundOptions = () => backgroundOptions;
+
+  const getMapBackground = () => mapBackground;
+
+  
+  const setCustomFontFamily = (fontFamily) => {
+    setFontFamily(fontFamily);
   };
 
-  const setNew = (content) => {
-    newToDo.id = toDoList.length + 1;
-    newToDo.name = content;
+  const setCustomFontSize = (fontSize) => {
+    setFontSize(fontSize);
+  };
+
+  const setCustomFontColor = (fontColor) => {
+    setFontColor(fontColor);
   };
 
 
-  const setCustomization = (custom) => {
-    setCustom(custom);
+  const changeBackgroundImage = (image) => {
+    setBackgroundImage(mapBackground[image]);
+  }
+
+
+  const handleAllChanges = () => {
+    divRoot.style.backgroundImage = `url(${backgroundImage})`;
+    divRoot.style.fontFamily = `${fontFamily}`;
+    divRoot.style.fontSize = `${fontSize}px`;
+    divRoot.style.color = `${fontColor}`;
   };
 
   const exposed = {
-    getToDo,
-    addToDo,
-    setNew,
-    setDone,
-    setToDoList,
+    getFontSize,
+    getfontFamily,
+    getfontColor,
+
+    getfontFamilyOptions,
+    getMapBackground,
+    getbackgroundOptions,
+    setCustomFontSize,
+    setCustomFontFamily,
+    setCustomFontColor,
+    changeBackgroundImage,
+    handleAllChanges
   };
 
   return (

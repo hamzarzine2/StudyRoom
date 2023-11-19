@@ -1,58 +1,64 @@
-import { useState } from "react";
+import React, { useContext } from "react";
 import Button from "../Buttons/button";
+import { ContextCustom } from "../../contexts/CustomContext";
 import "./Customization.css"
 
 const Customization = () => {
 
-  const divRoot = document.getElementById("root");
-  const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
 
-  const [fontFamily, setFontFamily] = useState('Arial, sans-serif');
-  const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
-  const [fontSize, setFontSize] = useState(16);
-  const [fontColor, setFontColor] = useState('#000000');
-  const fontOptions = [
-    "Arial, sans-serif",
-    "Times New Roman, serif",
-    "Courier New, monospace",
-    "Georgia, serif",
-    "Verdana, sans-serif",
-    "Impact, sans-serif",
-    "Comic Sans MS, cursive",
-    "Trebuchet MS, sans-serif",
-    "Palatino Linotype, serif",
-    "Lucida Console, monospace"
-  ];
+  const { 
+    getFontSize,
+    getfontFamily,
+    getfontColor,
 
+    getfontFamilyOptions,
+    getbackgroundOptions,
+    setCustomFontSize,
+    setCustomFontFamily,
+    setCustomFontColor,
+    changeBackgroundImage,
+    handleAllChanges, } = useContext(ContextCustom);
+
+    const backgroundOptions = getbackgroundOptions();
+    const fontFamily = getfontFamily();
+    const fontColor = getfontColor();
+    const fontSize = getFontSize();
+ 
   const handleFontFamilyChange = (e) => {
-    setFontFamily(e.target.value);
+    setCustomFontFamily(e.target.value);
   };
 
   const handleFontSizeChange = (e) => {
-    setFontSize(e.target.value);
+    setCustomFontSize(e.target.value);
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setBackgroundImage(event.target.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleFontColorChange = (e) => {
-    setFontColor(e.target.value);
+    setCustomFontColor(e.target.value);
   };
 
-  const handleAllChanges = () => {
-    divRoot.style.backgroundImage = `url(${backgroundImage})`;
-    divRoot.style.fontFamily = `${fontFamily}`;
-    divRoot.style.fontSize = `${fontSize}px`;
-    divRoot.style.color = `${fontColor}`;
+
+  const handleBackgroundChange = (e) => {
+    changeBackgroundImage(e);
+
   };
+
+  const renderBackgroundOptions = () => {
+
+    return (
+      <ul>
+        {backgroundOptions.map((key, index) => (
+          <li key={index}>
+            <Button value={`Background ${index + 1}`} event={() => handleBackgroundChange(key)} />
+            <br />
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
+
+
 
   return (
     <>
@@ -61,12 +67,12 @@ const Customization = () => {
 
         <label>
           Image de fond: </label>
-        <input type="file" accept="image/*" onChange={handleImageChange} />
+        {renderBackgroundOptions()}
         <br />
         <label>
           Police: </label>
         <select value={fontFamily} onChange={handleFontFamilyChange}>
-          {fontOptions.map((option, index) => (
+          {getfontFamilyOptions().map((option, index) => (
             <option key={index} value={option}>
               {option.split(",")[0]} {/* Affiche seulement le nom de la police sans les alternatives */}
             </option>
