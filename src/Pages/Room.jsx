@@ -30,7 +30,7 @@ function Room() {
 
       <div id="divRoom2">
       <Timer />
-      <button onClick={toggleVisibility}>Cliquez pour afficher/cacher</button>
+      <button onClick={toggleVisibility}>Customization</button>
         <p>
           WELCOME {user} room id == {roomId}
         </p>{" "}

@@ -10,21 +10,16 @@ const ContextCustom = React.createContext(null);
 const CustomProviderWrapper = (props) => {
 
   const divRoot = document.getElementById("root");
-const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
-  // const { socket } = useContext(SocketContext);
+  const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
+
+  const { socket, updateBackground } = useContext(SocketContext);
+
   const [fontFamily, setFontFamily] = useState('Arial, sans-serif');
   const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
   const [fontSize, setFontSize] = useState(16);
   const [fontColor, setFontColor] = useState('#0000FF');
 
-  /** 
-  const [custom, setCustom] = useState({
-    backgroundImage: defaultBackground,
-    fontSize: 16,
-    fontColor: "#000000",
-    fontFamily: "Arial, sans-serif"
-  });
-*/
+
   const backgroundOptions = [
     `${background}`,
     `${background2}`,
@@ -51,22 +46,24 @@ const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
   ];
 
   const getfontFamily = () => fontFamily;
-
   const getFontSize = () => fontSize;
-
   const getfontColor = () => fontColor;
-
-
   const getfontFamilyOptions = () => fontFamilyOptions;
-
   const getbackgroundOptions = () => backgroundOptions;
 
-  const getMapBackground = () => mapBackground;
+  socket.on("updated-background", (updatedBackground) => {
+    changeBackgroundImage(updatedBackground);
+  });
 
-  
+   socket.on("get-background", (socketId) => {
+    socket.emit("return-background", backgroundImage, socketId);
+  });
+
   const setCustomFontFamily = (fontFamily) => {
     setFontFamily(fontFamily);
   };
+
+ 
 
   const setCustomFontSize = (fontSize) => {
     setFontSize(fontSize);
@@ -79,8 +76,13 @@ const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
 
   const changeBackgroundImage = (image) => {
     setBackgroundImage(mapBackground[image]);
+    updateBackground(mapBackground[image]);
   }
 
+
+  const handleBackgroundChange = (e) => {
+    changeBackgroundImage(e);
+  };
 
   const handleAllChanges = () => {
     divRoot.style.backgroundImage = `url(${backgroundImage})`;
@@ -93,15 +95,13 @@ const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
     getFontSize,
     getfontFamily,
     getfontColor,
-
     getfontFamilyOptions,
-    getMapBackground,
     getbackgroundOptions,
     setCustomFontSize,
     setCustomFontFamily,
     setCustomFontColor,
-    changeBackgroundImage,
-    handleAllChanges
+    handleAllChanges,
+    handleBackgroundChange,
   };
 
   return (

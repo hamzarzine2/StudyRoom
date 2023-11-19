@@ -5,24 +5,23 @@ import "./Customization.css"
 
 const Customization = () => {
 
-  const { 
+  const {
     getFontSize,
     getfontFamily,
     getfontColor,
-
     getfontFamilyOptions,
     getbackgroundOptions,
     setCustomFontSize,
     setCustomFontFamily,
     setCustomFontColor,
-    changeBackgroundImage,
-    handleAllChanges, } = useContext(ContextCustom);
+    handleAllChanges,
+    handleBackgroundChange } = useContext(ContextCustom);
 
-    const backgroundOptions = getbackgroundOptions();
-    const fontFamily = getfontFamily();
-    const fontColor = getfontColor();
-    const fontSize = getFontSize();
- 
+  const backgroundOptions = getbackgroundOptions();
+  const fontFamily = getfontFamily();
+  const fontColor = getfontColor();
+  const fontSize = getFontSize();
+
   const handleFontFamilyChange = (e) => {
     setCustomFontFamily(e.target.value);
   };
@@ -39,10 +38,7 @@ const Customization = () => {
   };
 
 
-  const handleBackgroundChange = (e) => {
-    changeBackgroundImage(e);
 
-  };
 
   const renderBackgroundOptions = () => {
     const noBullets = "list-style-type:none;";
@@ -68,11 +64,11 @@ const Customization = () => {
         <h1> Customization </h1>
 
         <label>
-          Image de fond: </label>
+          Background: </label>
         {renderBackgroundOptions()}
         <br />
         <label>
-          Police: </label>
+          Font family: </label>
         <select value={fontFamily} onChange={handleFontFamilyChange}>
           {getfontFamilyOptions().map((option, index) => (
             <option key={index} value={option}>
@@ -83,13 +79,13 @@ const Customization = () => {
 
         <br />
         <label>
-          Taille de la police:
+          Font size:
         </label>
         <input type="number" min="10" max="50" value={fontSize} onChange={handleFontSizeChange} />
 
         <br />
         <label>
-          Couleur de la police:
+          Font color:
         </label>
         <input type="color" value={fontColor} onChange={handleFontColorChange} />
         <br />
