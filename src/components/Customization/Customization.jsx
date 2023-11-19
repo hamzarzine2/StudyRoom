@@ -4,10 +4,8 @@ import "./Customization.css"
 
 const Customization = () => {
 
-  // const divBody = document.querySelector("body");
-  const divBackground = document.getElementById("root");
   const divRoot = document.getElementById("root");
-  const defaultBackground = window.getComputedStyle(divBackground).backgroundImage;
+  const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
 
   const [fontFamily, setFontFamily] = useState('Arial, sans-serif');
   const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
@@ -42,7 +40,6 @@ const Customization = () => {
         setBackgroundImage(event.target.result);
       };
       reader.readAsDataURL(file);
-
     }
   };
 
@@ -51,7 +48,7 @@ const Customization = () => {
   };
 
   const handleAllChanges = () => {
-    divBackground.style.backgroundImage = `url(${backgroundImage})`
+    divRoot.style.backgroundImage = `url(${backgroundImage})`;
     divRoot.style.fontFamily = `${fontFamily}`;
     divRoot.style.fontSize = `${fontSize}px`;
     divRoot.style.color = `${fontColor}`;
