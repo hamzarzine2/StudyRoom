@@ -13,6 +13,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 300px; /* ou la largeur souhaitée */
+  height: 400px; /* ou la hauteur souhaitée */
+  overflow-y: auto; /* La barre de défilement verticale apparaîtra si le contenu dépasse la hauteur spécifiée */
+  overflow-x: hidden; 
+    border: 1px solid #ccc; /* Juste pour visualiser la taille de la div */
 }
 
 /* Style for Form component */

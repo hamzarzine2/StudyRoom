@@ -24,7 +24,6 @@
 
 .label-custom {
     font-size: 20px;
-    color: rgb(0, 0, 0);
     font-weight: bold;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -36,7 +35,6 @@
 
 .label-custom-title{
     font-size: 24px;
-    color: rgb(0, 0, 0);
     font-weight: bolder;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

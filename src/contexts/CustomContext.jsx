@@ -85,7 +85,6 @@ const CustomProviderWrapper = (props) => {
   };
 
   const handleAllChanges = () => {
-    console.log(fontColor);
     divRoot.style.backgroundImage = `url(${backgroundImage})`;
     divRoot.style.fontFamily = `${fontFamily}`;
     divRoot.style.fontSize = `${fontSize}px`;
