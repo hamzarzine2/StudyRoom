@@ -10,7 +10,7 @@ import FontColor from "./FontColor";
 const Customization = () => {
 
   const { handleAllChanges } = useContext(ContextCustom);
-
+  const useTheContext = () => handleAllChanges();
   return (
     <>
       <div id="divCustom">
@@ -25,7 +25,7 @@ const Customization = () => {
         <FontSize />
         <br />
         <FontColor />
-        <Button event={handleAllChanges} value={"Save"} class="btnSave" />
+        <Button event={useTheContext} value={"Save"} class="saveButton" />
       </div>
     </>
   );
