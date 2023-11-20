@@ -17,7 +17,7 @@ const CustomProviderWrapper = (props) => {
   const [fontFamily, setFontFamily] = useState('Arial, sans-serif');
   const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
   const [fontSize, setFontSize] = useState(16);
-  const [fontColor, setFontColor] = useState('#0000FF');
+  const [fontColor, setFontColor] = useState('#000000');
 
 
   const backgroundOptions = [

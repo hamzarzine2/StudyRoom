@@ -1,6 +1,6 @@
 .btnSave {
     padding: 12px 20px;
-    background-color: gray;
+    background-color: rgba(248, 249, 250, 0.5);
     color: white;
     border: none;
     border-radius: 8px;
@@ -9,13 +9,40 @@
 }
 
 .btnSave:hover {
-    background-color: darkslategray;
+    background-color: rgba(0, 115, 230, 0.5);
     color: #434343;
 }
 
-ul.no-bullets {
-    list-style-type: none; /* Remove bullets */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margins */
-  }
+.no-bullets {
+    list-style-type: none;
+    /* Delete list markers */
+    padding: 0;
+    /* Remove padding */
+    margin: 0;
+    /* Remove margin */
+}
 
+.label-custom {
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: auto;
+    height: 40px;
+    background-color: rgb(101, 106, 110);
+    text-align: left;
+}
+
+.label-custom-title{
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: auto;
+    height: 50px;
+    background-color: rgb(101, 106, 110);
+    
+}
