@@ -76,25 +76,7 @@ h1 {
 }
 
 /*************************** Chat **********************/
-#chat {
-  padding: 5px;
-  bottom: 0;
-  height: 33%;
-  background-color: rgba(240, 235, 235, 0.329);
-}
 
-#chat-title {
-  font-weight: bold;
-  text-align: center;
-  padding: 5px;
-}
-
-#message-input {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  margin-top: auto;
-}
 
 /*******************Todo list**************************/
 

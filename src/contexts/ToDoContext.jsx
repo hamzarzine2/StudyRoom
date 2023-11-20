@@ -11,7 +11,6 @@ const ToDoProviderWrapper = (props) => {
   const { socket, updateToDoList } = useContext(SocketContext); // Utilisez le hook useSocket
 
   socket.on("updated-todolist", (newToDoList) => {
-    console.log("updated-todolist : ", newToDoList);
     setToDoList(newToDoList);
   });
 

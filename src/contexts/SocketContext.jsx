@@ -23,7 +23,7 @@ const SocketProvider = ({ children }) => {
   };
 
   const updateBackground = (background) => {
-    socket.emit("update-background", background);
+    //socket.emit("update-background", background);
   };
 
   const value = {

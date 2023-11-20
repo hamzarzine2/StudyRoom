@@ -18,6 +18,7 @@
   overflow-y: auto; /* La barre de défilement verticale apparaîtra si le contenu dépasse la hauteur spécifiée */
   overflow-x: hidden; 
     border: 1px solid #ccc; /* Juste pour visualiser la taille de la div */
+    
 }
 
 /* Style for Form component */

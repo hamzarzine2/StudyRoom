@@ -51,13 +51,11 @@ const CustomProviderWrapper = (props) => {
   const getfontFamilyOptions = () => fontFamilyOptions;
   const getbackgroundOptions = () => backgroundOptions;
 
-  socket.on("updated-background", (updatedBackground) => {
-    changeBackgroundImage(updatedBackground);
+  socket.on("updated-background", (newBackground) => {
+    console.log("updated-background : ", newBackground);
+    changeBack(newBackground)
   });
 
-   socket.on("get-background", (socketId) => {
-    socket.emit("return-background", backgroundImage, socketId);
-  });
 
   const setCustomFontFamily = (fontFamily) => {
     setFontFamily(fontFamily);
@@ -84,8 +82,14 @@ const CustomProviderWrapper = (props) => {
     changeBackgroundImage(e);
   };
 
+  const changeBack=(background)=>{
+    setBackgroundImage(background);
+    divRoot.style.backgroundImage = `url(${background})`;
+
+  }
   const handleAllChanges = () => {
-    divRoot.style.backgroundImage = `url(${backgroundImage})`;
+    socket.emit("update-background", backgroundImage);
+    changeBack(backgroundImage)
     divRoot.style.fontFamily = `${fontFamily}`;
     divRoot.style.fontSize = `${fontSize}px`;
     divRoot.style.color = `${fontColor}`;
