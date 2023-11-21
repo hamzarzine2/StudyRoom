@@ -29,7 +29,6 @@ const SocketProvider = ({ children }) => {
     joinRoom,
     updateToDoList,
     updateChat,
-   
   };
 
   return (

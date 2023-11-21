@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1000px; /* ou la largeur souhaitée */
+  width: auto; /* ou la largeur souhaitée */
   height: 500px; /* ou la hauteur souhaitée */
   overflow-y: auto; /* La barre de défilement verticale apparaîtra si le contenu dépasse la hauteur spécifiée */
   overflow-x: hidden; /* Cela masque la barre de défilement horizontale, même si le contenu dépasse la largeur */

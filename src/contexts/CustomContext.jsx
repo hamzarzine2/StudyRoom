@@ -14,10 +14,12 @@ const CustomProviderWrapper = (props) => {
 
   const { socket } = useContext(SocketContext);
 
-  const [fontFamily, setFontFamily] = useState('Arial, sans-serif');
-  const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
-  const [fontSize, setFontSize] = useState(16);
-  const [fontColor, setFontColor] = useState('#000000');
+  const [custom, setCustom] = useState({
+    backgroundImage: defaultBackground,
+    fontFamily: 'Arial, sans-serif',
+    fontSize: 16,
+    fontColor: '#000000',
+  });
 
 
   const backgroundOptions = [
@@ -45,39 +47,25 @@ const CustomProviderWrapper = (props) => {
     "Lucida Console, monospace"
   ];
 
-  const getfontFamily = () => fontFamily;
-  const getFontSize = () => fontSize;
-  const getfontColor = () => fontColor;
+  const getfontFamily = () => custom.fontFamily;
+  const getFontSize = () => custom.fontSize;
+  const getfontColor = () => custom.fontColor;
   const getfontFamilyOptions = () => fontFamilyOptions;
   const getbackgroundOptions = () => backgroundOptions;
 
 
-
-  socket.on("updated-background", (newBackground) => {
-    console.log("updated-background : ", newBackground);
-    changeBackgroundImage(newBackground)
+  socket.on("updated-custom", (updatedCustom) => {
+    console.log("updated-custom : ", updatedCustom);
+    changeBackgroundImage(updatedCustom.backgroundImage)
+    changeFontFamilly(updatedCustom.fontFamily)
+    changeFontSize(updatedCustom.fontSize)
+    changeFontColor(updatedCustom.fontColor)
   });
-
-  socket.on("updated-fontfamilly", (newFontfamilly) => {
-    console.log("updated-fontfamilly : ", newFontfamilly);
-    changeFontFamilly(newFontfamilly)
-  });
-
-  socket.on("updated-fontsize", (newFontsize) => {
-    console.log("updated-fontsize : ", newFontsize);
-    changeFontSize(newFontsize)
-  });
-
-  socket.on("updated-fontcolor", (newFontcolor) => {
-    console.log("updated-fontcolor : ", newFontcolor);
-    changeFontColor(newFontcolor)
-  });
-
 
 
   // Background
   const setCustomBackgroundImage = (image) => {
-    setBackgroundImage(mapBackground[image]);
+    setCustom({ ...custom, backgroundImage: mapBackground[image] })
   }
 
 
@@ -86,13 +74,13 @@ const CustomProviderWrapper = (props) => {
   };
 
   const changeBackgroundImage = (background) => {
-    setBackgroundImage(background);
+    setCustomBackgroundImage(background);
     divRoot.style.backgroundImage = `url(${background})`;
   }
 
   // FontFamilly
   const setCustomFontFamily = (fontFamily) => {
-    setFontFamily(fontFamily);
+    setCustom({ ...custom, fontFamily: fontFamily })
   };
 
   const handleFontFamilyChange = (e) => {
@@ -100,13 +88,14 @@ const CustomProviderWrapper = (props) => {
   };
 
   const changeFontFamilly = (fontfamily) => {
-    setFontFamily(fontfamily);
+    setCustomFontFamily(fontfamily);
     divRoot.style.fontFamily = `${fontfamily}`;
   };
 
+
   // FontSize
   const setCustomFontSize = (fontSize) => {
-    setFontSize(fontSize);
+    setCustom({ ...custom, fontSize: fontSize })
   };
 
   const handleFontSizeChange = (e) => {
@@ -114,14 +103,14 @@ const CustomProviderWrapper = (props) => {
   };
 
   const changeFontSize = (fontsize) => {
-    setFontSize(fontsize);
+    setCustomFontSize(fontsize);
     divRoot.style.fontSize = `${fontsize}px`;
   };
 
 
   // FontColor
   const setCustomFontColor = (fontColor) => {
-    setFontColor(fontColor);
+    setCustom({ ...custom, fontColor: fontColor });
   };
 
   const handleFontColorChange = (e) => {
@@ -131,21 +120,27 @@ const CustomProviderWrapper = (props) => {
   };
 
   const changeFontColor = (fontcolor) => {
-    setFontColor(fontcolor);
+    setCustomFontColor(fontcolor);
     divRoot.style.color = `${fontcolor}`;
   };
 
 
 
   const handleAllChanges = () => {
-    socket.emit("update-background", backgroundImage);
-    changeBackgroundImage(backgroundImage)
-    socket.emit("update-fontfamilly", fontFamily);
-    changeFontFamilly(fontFamily);
-    socket.emit("update-fontsize", fontSize);
-    changeFontSize(fontSize);
-    socket.emit("update-fontcolor", fontColor);
-    changeFontColor(fontColor);
+    const updatedCustom =
+    {
+      backgroundImage: custom.backgroundImage,
+      fontFamily: custom.fontFamily,
+      fontSize: custom.fontSize,
+      fontColor: custom.fontColor,
+    };
+    
+    setCustom(updatedCustom);
+    socket.emit("update-custom", updatedCustom);
+    changeBackgroundImage(updatedCustom.backgroundImage);
+    changeFontFamilly(updatedCustom.fontFamily);
+    changeFontSize(updatedCustom.fontSize);
+    changeFontColor(updatedCustom.fontColor);
     
   };
 
@@ -154,9 +149,7 @@ const CustomProviderWrapper = (props) => {
     getfontFamily,
     getfontColor,
     getfontFamilyOptions,
-    setCustomFontSize,
     getbackgroundOptions,
-    setCustomFontColor,
     handleAllChanges,
     handleBackgroundChange,
     handleFontFamilyChange,

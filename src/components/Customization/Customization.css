@@ -1,14 +1,30 @@
 .btnSave {
     padding: 12px 20px;
+    background-color: rgb(101, 106, 110);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    
+}
+
+.btnSave:hover {
+    background-color: rgba(0, 115, 230, 0.5);
+}
+
+.btnIcon {
+    padding: 12px 20px;
     background-color: rgba(248, 249, 250, 0.5);
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
+    
 }
 
-.btnSave:hover {
+.btnIcon:hover {
     background-color: rgba(0, 115, 230, 0.5);
     color: #434343;
 }

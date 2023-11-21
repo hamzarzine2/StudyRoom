@@ -19,7 +19,7 @@ const Background = () => {
             <ul class="no-bullets">
                 {backgroundOptions.map((key, index) => (
                     <li key={index}>
-                        <Button class="btnSave" value={<img src={key} alt={`Thumbnail ${index}`} height={50} />} event={() => handleBackgroundChange(key)} />
+                    <Button class="btnIcon" value={<img src={key} alt={`Thumbnail ${index}`} height={50} />} event={() => handleBackgroundChange(key)} />
 
                     </li>
                 ))}
