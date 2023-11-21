@@ -25,16 +25,14 @@ function Room() {
             <Customization />
           </div>
         }
-      
-
-
+        
       <div id="divRoom2">
       <Timer />
-      <button onClick={toggleVisibility}>Customization</button>
+      
         <p>
-          WELCOME {user} room id == {roomId}
-          <Chat />
+          <Chat welcome={`WELCOME ${user} room id == ${roomId}`}/>
         </p>
+        <button className="btnSave" onClick={toggleVisibility}>Customization</button>
       </div>
       <div id="divRoom3">
         <div id="divTodo">

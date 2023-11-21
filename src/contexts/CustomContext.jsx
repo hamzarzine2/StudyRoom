@@ -62,7 +62,6 @@ const CustomProviderWrapper = (props) => {
     changeFontColor(updatedCustom.fontColor)
   });
 
-
   // Background
   const setCustomBackgroundImage = (image) => {
     setCustom({ ...custom, backgroundImage: mapBackground[image] })
@@ -77,6 +76,7 @@ const CustomProviderWrapper = (props) => {
     setCustomBackgroundImage(background);
     divRoot.style.backgroundImage = `url(${background})`;
   }
+
 
   // FontFamilly
   const setCustomFontFamily = (fontFamily) => {
@@ -134,7 +134,7 @@ const CustomProviderWrapper = (props) => {
       fontSize: custom.fontSize,
       fontColor: custom.fontColor,
     };
-    
+
     setCustom(updatedCustom);
     socket.emit("update-custom", updatedCustom);
     changeBackgroundImage(updatedCustom.backgroundImage);

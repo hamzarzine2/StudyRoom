@@ -6,7 +6,7 @@ import Form from "../Forms/form";
 import Button from "../Buttons/button";
 import "./Chat.css";
 
-const Chat = () => {
+const Chat = ({ welcome }) => {
   const [input, setInput] = useState("");
   const { getChat, addMessage } = useContext(ChatContext);
   const { user } = useContext(ContextUser);
@@ -14,7 +14,7 @@ const Chat = () => {
 
   const handleSubmit = () => {
     addMessage({
-      id: messageList.length + 1, 
+      id: messageList.length + 1,
       user,
       message: input
     });
@@ -23,7 +23,12 @@ const Chat = () => {
 
   return (
     <div id="chat">
-      <div id="chat-title"> <b> CHAT </b> </div>
+      <div id="chat-title">
+        <b> CHAT  </b> <br />
+        {welcome}
+        <br />
+        <br />
+      </div>
       <div id="messages-container">
         {messageList.map((item, index) => (
           <ChatLine key={index} props={item} />
