@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import { SocketContext } from "./SocketContext";
 import background from "../assets/background.jpg";
 import background2 from "../assets/background2.jpg";
@@ -15,24 +15,26 @@ const CustomProviderWrapper = (props) => {
 
   const { socket, updateCustom } = useContext(SocketContext);
 
-  /**const [custom, setCustom] = useState({
-    backgroundImage: defaultBackground,
-    fontFamily: 'Arial, sans-serif',
-    fontSize: 16,
-    fontColor: '#000000',
-  });*/
 
-  const arrayCustom = fetchValue(STORAGE_CUSTOM_KEY, {
-    backgroundImage: defaultBackground,
-    fontFamily: 'Arial, sans-serif',
-    fontSize: 16,
-    fontColor: '#000000',
+  const [custom, setCustom] = useState(() => {
+    return fetchValue(STORAGE_CUSTOM_KEY, {
+      backgroundImage: defaultBackground,
+      fontFamily: 'Arial, sans-serif',
+      fontSize: 16,
+      fontColor: '#000000',
+    });
   });
 
-  console.log("arrayCustom : ", arrayCustom);
-
-  const [custom, setCustom] = useState(arrayCustom);
-  console.log(custom);
+  useEffect(() => {
+    console.log(2);
+    const arrayCustom = fetchValue(STORAGE_CUSTOM_KEY, {
+      backgroundImage: defaultBackground,
+      fontFamily: 'Arial, sans-serif',
+      fontSize: 16,
+      fontColor: '#000000',
+    });
+    setCustom(arrayCustom);
+  }, [defaultBackground]);
 
   const backgroundOptions = [
     `${background}`,
@@ -67,12 +69,16 @@ const CustomProviderWrapper = (props) => {
 
 
   socket.on("updated-custom", (updatedCustom) => {
-    console.log("updated-custom : ", updatedCustom);
+    console.log(4);
     changeAllCustoms(updatedCustom);
+ 
+    console.log("updated-custom : ", updatedCustom);
+
   });
 
 
   socket.on("get-custom", (socketId) => {
+    console.log(5);
     socket.emit("return-custom", custom, socketId);
   });
 
@@ -101,6 +107,7 @@ const CustomProviderWrapper = (props) => {
 
 
   const changeAllCustoms = (custom) => {
+    console.log(6);
     setCustomBackgroundImage(custom.backgroundImage);
     divRoot.style.backgroundImage = `url(${custom.backgroundImage})`;
 
@@ -116,6 +123,7 @@ const CustomProviderWrapper = (props) => {
 
   
   const handleAllChanges = () => {
+    console.log(7);
     const updatedCustom =
     {
       backgroundImage: custom.backgroundImage,
@@ -125,14 +133,17 @@ const CustomProviderWrapper = (props) => {
     };
 
     setCustom(updatedCustom);
-    updateCustom(updatedCustom);
-    socket.emit("update-custom", updatedCustom);
     changeAllCustoms(updatedCustom);
     persistValue(STORAGE_CUSTOM_KEY, custom);
   };
 
+
+
+
+
   const exposed = {
     getFontSize,
+    setCustom,
     getfontFamily,
     getfontColor,
     getfontFamilyOptions,
@@ -142,6 +153,8 @@ const CustomProviderWrapper = (props) => {
     setCustomFontFamily,
     setCustomFontSize,
     setCustomFontColor,
+    changeAllCustoms,
+    setCustom
   };
 
   return (
