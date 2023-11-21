@@ -12,7 +12,7 @@ const CustomProviderWrapper = (props) => {
   const divRoot = document.getElementById("root");
   const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
 
-  const { socket, updateBackground } = useContext(SocketContext);
+  const { socket } = useContext(SocketContext);
 
   const [fontFamily, setFontFamily] = useState('Arial, sans-serif');
   const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
@@ -51,48 +51,102 @@ const CustomProviderWrapper = (props) => {
   const getfontFamilyOptions = () => fontFamilyOptions;
   const getbackgroundOptions = () => backgroundOptions;
 
+
+
   socket.on("updated-background", (newBackground) => {
     console.log("updated-background : ", newBackground);
-    changeBack(newBackground)
+    changeBackgroundImage(newBackground)
+  });
+
+  socket.on("updated-fontfamilly", (newFontfamilly) => {
+    console.log("updated-fontfamilly : ", newFontfamilly);
+    changeFontFamilly(newFontfamilly)
+  });
+
+  socket.on("updated-fontsize", (newFontsize) => {
+    console.log("updated-fontsize : ", newFontsize);
+    changeFontSize(newFontsize)
+  });
+
+  socket.on("updated-fontcolor", (newFontcolor) => {
+    console.log("updated-fontcolor : ", newFontcolor);
+    changeFontColor(newFontcolor)
   });
 
 
-  const setCustomFontFamily = (fontFamily) => {
-    setFontFamily(fontFamily);
-  };
 
- 
-
-  const setCustomFontSize = (fontSize) => {
-    setFontSize(fontSize);
-  };
-
-  const setCustomFontColor = (fontColor) => {
-    setFontColor(fontColor);
-  };
-
-
-  const changeBackgroundImage = (image) => {
+  // Background
+  const setCustomBackgroundImage = (image) => {
     setBackgroundImage(mapBackground[image]);
-    updateBackground(mapBackground[image]);
   }
 
 
   const handleBackgroundChange = (e) => {
-    changeBackgroundImage(e);
+    setCustomBackgroundImage(e);
   };
 
-  const changeBack=(background)=>{
+  const changeBackgroundImage = (background) => {
     setBackgroundImage(background);
     divRoot.style.backgroundImage = `url(${background})`;
-
   }
+
+  // FontFamilly
+  const setCustomFontFamily = (fontFamily) => {
+    setFontFamily(fontFamily);
+  };
+
+  const handleFontFamilyChange = (e) => {
+    setCustomFontFamily(e.target.value);
+  };
+
+  const changeFontFamilly = (fontfamily) => {
+    setFontFamily(fontfamily);
+    divRoot.style.fontFamily = `${fontfamily}`;
+  };
+
+  // FontSize
+  const setCustomFontSize = (fontSize) => {
+    setFontSize(fontSize);
+  };
+
+  const handleFontSizeChange = (e) => {
+    setCustomFontSize(e.target.value);
+  };
+
+  const changeFontSize = (fontsize) => {
+    setFontSize(fontsize);
+    divRoot.style.fontSize = `${fontsize}px`;
+  };
+
+
+  // FontColor
+  const setCustomFontColor = (fontColor) => {
+    setFontColor(fontColor);
+  };
+
+  const handleFontColorChange = (e) => {
+    console.log(e.target.value);
+    setCustomFontColor(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const changeFontColor = (fontcolor) => {
+    setFontColor(fontcolor);
+    divRoot.style.color = `${fontcolor}`;
+  };
+
+
+
   const handleAllChanges = () => {
     socket.emit("update-background", backgroundImage);
-    changeBack(backgroundImage)
-    divRoot.style.fontFamily = `${fontFamily}`;
-    divRoot.style.fontSize = `${fontSize}px`;
-    divRoot.style.color = `${fontColor}`;
+    changeBackgroundImage(backgroundImage)
+    socket.emit("update-fontfamilly", fontFamily);
+    changeFontFamilly(fontFamily);
+    socket.emit("update-fontsize", fontSize);
+    changeFontSize(fontSize);
+    socket.emit("update-fontcolor", fontColor);
+    changeFontColor(fontColor);
+    
   };
 
   const exposed = {
@@ -100,12 +154,14 @@ const CustomProviderWrapper = (props) => {
     getfontFamily,
     getfontColor,
     getfontFamilyOptions,
-    getbackgroundOptions,
     setCustomFontSize,
-    setCustomFontFamily,
+    getbackgroundOptions,
     setCustomFontColor,
     handleAllChanges,
     handleBackgroundChange,
+    handleFontFamilyChange,
+    handleFontSizeChange,
+    handleFontColorChange,
   };
 
   return (

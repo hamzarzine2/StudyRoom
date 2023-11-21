@@ -17,7 +17,7 @@
 
 #toDoLine p {
   margin: 0;
-  font-size: 16px;
+  /*font-size: 16px;*/
   flex-grow: 1;
   word-wrap: break-word;
 }
@@ -39,7 +39,7 @@
 
 /* Style for the checkmark */
 #toDoLine span {
-  font-size: 18px;
+  /*font-size: 18px;*/
   color: rgb(66, 193, 98); /* Change checkmark color to violet */
   margin-left: 10px;
 }

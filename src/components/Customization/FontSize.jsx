@@ -4,14 +4,9 @@ import "./Customization.css"
 
 const FontSize = () => {
 
-    const { getFontSize, setCustomFontSize } = useContext(ContextCustom);
+    const { getFontSize, handleFontSizeChange } = useContext(ContextCustom);
 
     const fontSize = getFontSize();
-
-
-    const handleFontSizeChange = (e) => {
-        setCustomFontSize(e.target.value);
-    };
 
     return (
         <>

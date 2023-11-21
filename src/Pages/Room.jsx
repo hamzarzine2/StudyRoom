@@ -33,7 +33,8 @@ function Room() {
       <button onClick={toggleVisibility}>Customization</button>
         <p>
           WELCOME {user} room id == {roomId}
-        </p>{" "}
+          <Chat />
+        </p>
       </div>
       <div id="divRoom3">
         <div id="divTodo">
