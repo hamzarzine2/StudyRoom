@@ -3,9 +3,10 @@ import { SocketContext } from "./SocketContext";
 import background from "../assets/background.jpg";
 import background2 from "../assets/background2.jpg";
 import background3 from "../assets/background3.jpg";
+import { useLocalStorage, fetchValue, persistValue } from "../hooks/utils";
 
 const ContextCustom = React.createContext(null);
-
+const STORAGE_CUSTOM_KEY = "custom";
 
 const CustomProviderWrapper = (props) => {
 
@@ -14,13 +15,24 @@ const CustomProviderWrapper = (props) => {
 
   const { socket, updateCustom } = useContext(SocketContext);
 
-  const [custom, setCustom] = useState({
+  /**const [custom, setCustom] = useState({
+    backgroundImage: defaultBackground,
+    fontFamily: 'Arial, sans-serif',
+    fontSize: 16,
+    fontColor: '#000000',
+  });*/
+
+  const arrayCustom = fetchValue(STORAGE_CUSTOM_KEY, {
     backgroundImage: defaultBackground,
     fontFamily: 'Arial, sans-serif',
     fontSize: 16,
     fontColor: '#000000',
   });
 
+  console.log("arrayCustom : ", arrayCustom);
+
+  const [custom, setCustom] = useState(arrayCustom);
+  console.log(custom);
 
   const backgroundOptions = [
     `${background}`,
@@ -56,10 +68,7 @@ const CustomProviderWrapper = (props) => {
 
   socket.on("updated-custom", (updatedCustom) => {
     console.log("updated-custom : ", updatedCustom);
-    changeBackgroundImage(updatedCustom.backgroundImage)
-    changeFontFamilly(updatedCustom.fontFamily)
-    changeFontSize(updatedCustom.fontSize)
-    changeFontColor(updatedCustom.fontColor)
+    changeAllCustoms(updatedCustom);
   });
 
 
@@ -67,34 +76,15 @@ const CustomProviderWrapper = (props) => {
     socket.emit("return-custom", custom, socketId);
   });
 
+
   // Background
   const setCustomBackgroundImage = (image) => {
     setCustom({ ...custom, backgroundImage: mapBackground[image] })
   }
 
-
-  const handleBackgroundChange = (e) => {
-    setCustomBackgroundImage(e);
-  };
-
-  const changeBackgroundImage = (background) => {
-    setCustomBackgroundImage(background);
-    divRoot.style.backgroundImage = `url(${background})`;
-  }
-
-
   // FontFamilly
   const setCustomFontFamily = (fontFamily) => {
     setCustom({ ...custom, fontFamily: fontFamily })
-  };
-
-  const handleFontFamilyChange = (e) => {
-    setCustomFontFamily(e.target.value);
-  };
-
-  const changeFontFamilly = (fontfamily) => {
-    setCustomFontFamily(fontfamily);
-    divRoot.style.fontFamily = `${fontfamily}`;
   };
 
 
@@ -103,34 +93,28 @@ const CustomProviderWrapper = (props) => {
     setCustom({ ...custom, fontSize: fontSize })
   };
 
-  const handleFontSizeChange = (e) => {
-    setCustomFontSize(e.target.value);
-  };
-
-  const changeFontSize = (fontsize) => {
-    setCustomFontSize(fontsize);
-    divRoot.style.fontSize = `${fontsize}px`;
-  };
-
 
   // FontColor
   const setCustomFontColor = (fontColor) => {
     setCustom({ ...custom, fontColor: fontColor });
   };
 
-  const handleFontColorChange = (e) => {
-    console.log(e.target.value);
-    setCustomFontColor(e.target.value);
-    console.log(e.target.value);
-  };
 
-  const changeFontColor = (fontcolor) => {
-    setCustomFontColor(fontcolor);
-    divRoot.style.color = `${fontcolor}`;
-  };
+  const changeAllCustoms = (custom) => {
+    setCustomBackgroundImage(custom.backgroundImage);
+    divRoot.style.backgroundImage = `url(${custom.backgroundImage})`;
 
+    setCustomFontFamily(custom.fontFamily);
+    divRoot.style.fontSize = `${custom.fontFamily}px`;
 
+    setCustomFontSize(custom.fontSize);
+    divRoot.style.fontSize = `${custom.fontSize}px`;
 
+    setCustomFontColor(custom.fontColor);
+    divRoot.style.color = `${custom.fontColor}`;
+  }
+
+  
   const handleAllChanges = () => {
     const updatedCustom =
     {
@@ -143,11 +127,8 @@ const CustomProviderWrapper = (props) => {
     setCustom(updatedCustom);
     updateCustom(updatedCustom);
     socket.emit("update-custom", updatedCustom);
-    changeBackgroundImage(updatedCustom.backgroundImage);
-    changeFontFamilly(updatedCustom.fontFamily);
-    changeFontSize(updatedCustom.fontSize);
-    changeFontColor(updatedCustom.fontColor);
-    
+    changeAllCustoms(updatedCustom);
+    persistValue(STORAGE_CUSTOM_KEY, custom);
   };
 
   const exposed = {
@@ -157,10 +138,10 @@ const CustomProviderWrapper = (props) => {
     getfontFamilyOptions,
     getbackgroundOptions,
     handleAllChanges,
-    handleBackgroundChange,
-    handleFontFamilyChange,
-    handleFontSizeChange,
-    handleFontColorChange,
+    setCustomBackgroundImage,
+    setCustomFontFamily,
+    setCustomFontSize,
+    setCustomFontColor,
   };
 
   return (

@@ -6,14 +6,16 @@ import Chat from "../components/Chat/Chat";
 import TodoList from "../components/TodoList/TodoList";
 import Customization from "../components/Customization/Customization";
 import { SocketContext } from "../contexts/SocketContext";
+import {ContextCustom} from "../contexts/CustomContext";
 
 function Room() {
   const { user } = useContext(ContextUser);
   const { joinRoom } = useContext(SocketContext);
+  const { handleAllChanges } = useContext(ContextCustom);
   const roomId = useParams().id;
   const [hidden, setHidden] = useState(false);
   joinRoom(roomId);
-
+  //handleAllChanges();
   const toggleVisibility = () => {
     setHidden(!hidden);
   };
@@ -25,7 +27,7 @@ function Room() {
             <Customization />
           </div>
         }
-        
+
       <div id="divRoom2">
       <Timer />
       

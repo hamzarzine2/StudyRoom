@@ -5,14 +5,13 @@ import "./Customization.css"
 
 const Background = () => {
 
-    const { getbackgroundOptions, handleBackgroundChange } = useContext(ContextCustom);
+    const { getbackgroundOptions, setCustomBackgroundImage } = useContext(ContextCustom);
 
     const backgroundOptions = getbackgroundOptions();
 
-    /*
-    <Button value={`Background ${index + 1}`} event={() => handleBackgroundChange(key)} />
-                            <img src={key} alt={`Thumbnail ${index}`} height={50} />
-    */
+    const handleBackgroundChange = (e) => {
+        setCustomBackgroundImage(e);
+      };
 
     const renderBackgroundOptions = () => {
         return (

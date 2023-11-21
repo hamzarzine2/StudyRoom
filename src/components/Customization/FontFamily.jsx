@@ -4,10 +4,14 @@ import "./Customization.css"
 
 const FontFamily = () => {
 
-    const { getfontFamily, getfontFamilyOptions, handleFontFamilyChange } = useContext(ContextCustom);
+    const { getfontFamily, getfontFamilyOptions, setCustomFontFamily } = useContext(ContextCustom);
 
     const fontFamily = getfontFamily();
 
+    const handleFontFamilyChange = (e) => {
+        setCustomFontFamily(e.target.value);
+      };
+    
     return (
         <>
             <div  class="label-custom">
