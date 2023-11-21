@@ -23,7 +23,7 @@ const Chat = () => {
 
   return (
     <div id="chat">
-      <div id="chat-title"> CHAT </div>
+      <div id="chat-title"> <b> CHAT </b> </div>
       <div id="messages-container">
         {messageList.map((item, index) => (
           <ChatLine key={index} props={item} />

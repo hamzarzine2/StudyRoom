@@ -40,7 +40,7 @@ function Room() {
         <div id="divTodo">
           <TodoList />
         </div>
-        <Chat />
+       
       </div>
     </>
   );

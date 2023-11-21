@@ -25,7 +25,7 @@ const Customization = () => {
         <FontSize />
         <br />
         <FontColor />
-        <Button event={useTheContext} value={"Save"} class="saveButton" />
+        <Button event={useTheContext} value={"Save"} class="btnSave" />
       </div>
     </>
   );
