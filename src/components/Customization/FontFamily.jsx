@@ -1,17 +1,12 @@
 import React, { useContext } from "react";
-import Button from "../Buttons/button";
 import { ContextCustom } from "../../contexts/CustomContext";
 import "./Customization.css"
 
 const FontFamily = () => {
 
-    const { getfontFamily, getfontFamilyOptions, setCustomFontFamily, } = useContext(ContextCustom);
+    const { getfontFamily, getfontFamilyOptions, handleFontFamilyChange } = useContext(ContextCustom);
 
     const fontFamily = getfontFamily();
-
-    const handleFontFamilyChange = (e) => {
-        setCustomFontFamily(e.target.value);
-    };
 
     return (
         <>

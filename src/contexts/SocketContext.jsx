@@ -22,16 +22,13 @@ const SocketProvider = ({ children }) => {
     socket.emit("update-chat", chat);
   };
 
-  const updateBackground = (background) => {
-    //socket.emit("update-background", background);
-  };
+
 
   const value = {
     socket,
     joinRoom,
     updateToDoList,
     updateChat,
-    updateBackground,
   };
 
   return (
