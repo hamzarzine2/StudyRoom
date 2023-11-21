@@ -22,6 +22,11 @@ const SocketProvider = ({ children }) => {
     socket.emit("update-chat", chat);
   };
 
+  const updateCustom = (custom) => {
+    socket.emit("update-custom", custom);
+  };
+
+
 
 
   const value = {
@@ -29,6 +34,7 @@ const SocketProvider = ({ children }) => {
     joinRoom,
     updateToDoList,
     updateChat,
+    updateCustom
   };
 
   return (

@@ -12,7 +12,7 @@ const CustomProviderWrapper = (props) => {
   const divRoot = document.getElementById("root");
   const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
 
-  const { socket } = useContext(SocketContext);
+  const { socket, updateCustom } = useContext(SocketContext);
 
   const [custom, setCustom] = useState({
     backgroundImage: defaultBackground,
@@ -60,6 +60,11 @@ const CustomProviderWrapper = (props) => {
     changeFontFamilly(updatedCustom.fontFamily)
     changeFontSize(updatedCustom.fontSize)
     changeFontColor(updatedCustom.fontColor)
+  });
+
+
+  socket.on("get-custom", (socketId) => {
+    socket.emit("return-custom", custom, socketId);
   });
 
   // Background
@@ -136,6 +141,7 @@ const CustomProviderWrapper = (props) => {
     };
 
     setCustom(updatedCustom);
+    updateCustom(updatedCustom);
     socket.emit("update-custom", updatedCustom);
     changeBackgroundImage(updatedCustom.backgroundImage);
     changeFontFamilly(updatedCustom.fontFamily);
