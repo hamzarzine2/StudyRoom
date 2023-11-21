@@ -1,40 +1,22 @@
 import React, { useState, useContext,useEffect } from "react";
-import { SocketContext } from "./SocketContext";
 import background from "../assets/background.jpg";
 import background2 from "../assets/background2.jpg";
 import background3 from "../assets/background3.jpg";
-import { useLocalStorage, fetchValue, persistValue } from "../hooks/utils";
 
 const ContextCustom = React.createContext(null);
-const STORAGE_CUSTOM_KEY = "custom";
 
 const CustomProviderWrapper = (props) => {
 
   const divRoot = document.getElementById("root");
   const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
 
-  const { socket, updateCustom } = useContext(SocketContext);
-
-
-  const [custom, setCustom] = useState(() => {
-    return fetchValue(STORAGE_CUSTOM_KEY, {
+  const [custom, setCustom] = useState({
       backgroundImage: defaultBackground,
       fontFamily: 'Arial, sans-serif',
       fontSize: 16,
       fontColor: '#000000',
     });
-  });
 
-  useEffect(() => {
-    console.log(2);
-    const arrayCustom = fetchValue(STORAGE_CUSTOM_KEY, {
-      backgroundImage: defaultBackground,
-      fontFamily: 'Arial, sans-serif',
-      fontSize: 16,
-      fontColor: '#000000',
-    });
-    setCustom(arrayCustom);
-  }, [defaultBackground]);
 
   const backgroundOptions = [
     `${background}`,
@@ -61,84 +43,31 @@ const CustomProviderWrapper = (props) => {
     "Lucida Console, monospace"
   ];
 
+  const getCustom = () => custom;
   const getfontFamily = () => custom.fontFamily;
   const getFontSize = () => custom.fontSize;
   const getfontColor = () => custom.fontColor;
   const getfontFamilyOptions = () => fontFamilyOptions;
   const getbackgroundOptions = () => backgroundOptions;
+  const getMapBackground = () => mapBackground;
 
-
-  socket.on("updated-custom", (updatedCustom) => {
-    console.log(4);
-    changeAllCustoms(updatedCustom);
- 
-    console.log("updated-custom : ", updatedCustom);
-
-  });
-
-
-  socket.on("get-custom", (socketId) => {
-    console.log(5);
-    socket.emit("return-custom", custom, socketId);
-  });
-
-
-  // Background
-  const setCustomBackgroundImage = (image) => {
-    setCustom({ ...custom, backgroundImage: mapBackground[image] })
-  }
-
-  // FontFamilly
-  const setCustomFontFamily = (fontFamily) => {
-    setCustom({ ...custom, fontFamily: fontFamily })
-  };
-
-
-  // FontSize
-  const setCustomFontSize = (fontSize) => {
-    setCustom({ ...custom, fontSize: fontSize })
-  };
-
-
-  // FontColor
-  const setCustomFontColor = (fontColor) => {
-    setCustom({ ...custom, fontColor: fontColor });
-  };
-
-
-  const changeAllCustoms = (custom) => {
-    console.log(6);
-    setCustomBackgroundImage(custom.backgroundImage);
-    divRoot.style.backgroundImage = `url(${custom.backgroundImage})`;
-
-    setCustomFontFamily(custom.fontFamily);
-    divRoot.style.fontSize = `${custom.fontFamily}px`;
-
-    setCustomFontSize(custom.fontSize);
-    divRoot.style.fontSize = `${custom.fontSize}px`;
-
-    setCustomFontColor(custom.fontColor);
-    divRoot.style.color = `${custom.fontColor}`;
-  }
 
   
   const handleAllChanges = () => {
-    console.log(7);
-    const updatedCustom =
+    divRoot.style.backgroundImage = `url(${custom.backgroundImage})`;
+    divRoot.style.fontFamily = `${custom.fontFamily}`;
+    divRoot.style.fontSize = `${custom.fontSize}px`;
+    divRoot.style.color = `${custom.fontColor}`;
+    
+    /**const updatedCustom =
     {
       backgroundImage: custom.backgroundImage,
       fontFamily: custom.fontFamily,
       fontSize: custom.fontSize,
       fontColor: custom.fontColor,
     };
-
-    setCustom(updatedCustom);
-    changeAllCustoms(updatedCustom);
-    persistValue(STORAGE_CUSTOM_KEY, custom);
+     setCustom(updatedCustom);**/
   };
-
-
-
 
 
   const exposed = {
@@ -148,13 +77,10 @@ const CustomProviderWrapper = (props) => {
     getfontColor,
     getfontFamilyOptions,
     getbackgroundOptions,
+    getMapBackground,
     handleAllChanges,
-    setCustomBackgroundImage,
-    setCustomFontFamily,
-    setCustomFontSize,
-    setCustomFontColor,
-    changeAllCustoms,
-    setCustom
+    //changeAllCustoms,
+    getCustom,
   };
 
   return (

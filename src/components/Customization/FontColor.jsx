@@ -4,12 +4,13 @@ import "./Customization.css"
 
 const FontColor = () => {
 
-    const { getfontColor, setCustomFontColor } = useContext(ContextCustom);
+    const { getCustom, getfontColor, setCustom } = useContext(ContextCustom);
 
     const fontColor = getfontColor();
+    const custom = getCustom();
 
     const handleFontColorChange = (e) => {
-        setCustomFontColor(e.target.value);
+        setCustom({ ...custom, fontColor: e.target.value })
       };
 
     return (

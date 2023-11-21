@@ -5,12 +5,15 @@ import "./Customization.css"
 
 const Background = () => {
 
-    const { getbackgroundOptions, setCustomBackgroundImage } = useContext(ContextCustom);
+    const { getCustom, getbackgroundOptions, setCustom, getMapBackground  } = useContext(ContextCustom);
 
     const backgroundOptions = getbackgroundOptions();
+    const mapBackground = getMapBackground();
+    const custom = getCustom();
 
     const handleBackgroundChange = (e) => {
-        setCustomBackgroundImage(e);
+        setCustom({ ...custom, backgroundImage: mapBackground[e]})
+        console.log("backgroundImage : ", mapBackground[e]);
       };
 
     const renderBackgroundOptions = () => {

@@ -4,17 +4,18 @@ import "./Customization.css"
 
 const FontFamily = () => {
 
-    const { getfontFamily, getfontFamilyOptions, setCustomFontFamily } = useContext(ContextCustom);
+    const { getCustom, getfontFamily, getfontFamilyOptions, setCustom } = useContext(ContextCustom);
 
     const fontFamily = getfontFamily();
+    const custom = getCustom();
 
     const handleFontFamilyChange = (e) => {
-        setCustomFontFamily(e.target.value);
-      };
-    
+        setCustom({ ...custom, fontFamily: e.target.value })
+    };
+
     return (
         <>
-            <div  class="label-custom">
+            <div class="label-custom">
                 <label> Font Family:</label>
             </div>
             <select value={fontFamily} onChange={handleFontFamilyChange}>
