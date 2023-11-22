@@ -13,14 +13,14 @@
   justify-content: space-between;
   margin-bottom: 15px;
   width: 100%; /* Make ToDoLine take up full width */
+  
 }
 
 .chatLine p {
   margin: 0;
-  font-size: 16px;
+  /*font-size: 16px;*/
   flex-grow: 1;
   word-wrap: break-word;
-  color: #000; /* Set text color to black */
 }
 
 /* Style for the "FINI" button */

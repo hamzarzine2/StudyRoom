@@ -7,6 +7,7 @@ const Form = (props) => {
   };
 
   const handleInputChange = (e) => {
+    console.log("her===> " , e.target.value);
     props.setMethod(e.target.value);
   };
 

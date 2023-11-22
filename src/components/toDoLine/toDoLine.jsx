@@ -12,8 +12,7 @@ const ToDoLine = ({ props }) => {
   return (
     <div id="toDoLine" className={props.done ? "done" : ""}>
       <p>{props.name}</p>
-      {props.done ? <span>✓</span> : null}
-      <Button event={fini} value="FINI" class="buttonFinish" />
+      {props.done ? <span>✓</span> : <Button event={fini} value="FINI" class="buttonFinish" />}
     </div>
   );
 };

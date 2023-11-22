@@ -1,7 +1,32 @@
-function Customization() {
+import React, { useContext } from "react";
+import Button from "../Buttons/button";
+import { ContextCustom } from "../../contexts/CustomContext";
+import "./Customization.css"
+import Background from "./Background";
+import FontFamily from "./FontFamily";
+import FontSize from "./FontSize";
+import FontColor from "./FontColor";
+
+const Customization = () => {
+
+  const { handleAllChanges } = useContext(ContextCustom);
+  const useTheContext = () => handleAllChanges();
   return (
     <>
-      <div id="divCustom">Customization</div>
+      <div id="divCustom">
+
+        <div class="label-custom-title">
+          <label> Customization </label> 
+        </div>
+        <br />
+        <Background />
+        <FontFamily />
+        <br />
+        <FontSize />
+        <br />
+        <FontColor />
+        <center><Button event={useTheContext} value={"Save"} class="btnSave" /></center> 
+      </div>
     </>
   );
 }

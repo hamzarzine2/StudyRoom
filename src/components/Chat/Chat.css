@@ -1,4 +1,4 @@
-.chat {
+#chat {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -13,6 +13,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: auto; /* ou la largeur souhaitée */
+  height: 500px; /* ou la hauteur souhaitée */
+  overflow-y: auto; /* La barre de défilement verticale apparaîtra si le contenu dépasse la hauteur spécifiée */
+  overflow-x: hidden; /* Cela masque la barre de défilement horizontale, même si le contenu dépasse la largeur */
+  border: 1px solid #ccc; /* Juste pour visualiser la taille de la div */
+
 }
 
 /* Style for Form component */
@@ -39,7 +45,7 @@ input[type="text"] {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  /*font-size: 16px;*/
 }
 
 .saveButton:hover {

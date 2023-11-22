@@ -14,12 +14,14 @@ const SocketProvider = ({ children }) => {
   };
 
   const updateToDoList = (toDoList) => {
+    console.log("updateToDoList : ", toDoList);
     socket.emit("update-todolist", toDoList);
   };
 
   const updateChat = (chat) => {
     socket.emit("update-chat", chat);
   };
+
 
   const value = {
     socket,
