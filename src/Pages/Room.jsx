@@ -7,7 +7,7 @@ import TodoList from "../components/TodoList/TodoList";
 import Customization from "../components/Customization/Customization";
 import { SocketContext } from "../contexts/SocketContext";
 import { ContextCustom } from "../contexts/CustomContext";
-import { fetchValue } from "../hooks/utils";
+
 const STORAGE_CUSTOM_KEY = "custom";import { io } from "socket.io-client";
 const divRoot = document.getElementById("root");
 const defaultBackground = window.getComputedStyle(divRoot).backgroundImage;
