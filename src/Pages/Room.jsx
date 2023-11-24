@@ -11,14 +11,12 @@ import { ContextToDO } from "../contexts/ToDoContext";
 
 function Room() {
   const { user } = useContext(ContextUser);
-  const { joinRoom } = useContext(SocketContext);
   const { setCustom } = useContext(ContextCustom);
   const { initToDo } = useContext(ContextToDO);
 
   const roomId = useParams().id;
   const [hidden, setHidden] = useState(false);
 
-  joinRoom(roomId, user);
   const toggleVisibility = () => {
     setHidden(!hidden);
   };

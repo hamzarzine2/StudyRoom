@@ -5,12 +5,14 @@ import Form from "../components/Forms/form";
 import Button from "../components/Buttons/button";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
+import { SocketContext } from "../contexts/SocketContext";
 
 function Home() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [roomInput, setroomInput] = useState("");
-
+  
+  const { joinRoom } = useContext(SocketContext);
   const { user, setNameUser } = useContext(ContextUser);
   const { room, setRoomId } = useContext(ContextRoom);
 
@@ -18,6 +20,7 @@ function Home() {
     setNameUser(name);
     io("http://localhost:4001/user",{ auth: { user: name } }, { transports: ["websocket"] });
     console.log(room.id);
+    joinRoom(room.id, user);
     navigate("/room/" + room.id);
   };
   
