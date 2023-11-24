@@ -26,6 +26,11 @@ const ToDoProviderWrapper = (props) => {
     updateToDoList(updatedToDoList);
   };
 
+  const initToDo=( )=>{
+    console.log("rere");
+    setToDo([])
+  }
+
   const setDone = (toDoNote) => {
     const index = toDoList.indexOf(toDoNote);
     if (index !== -1) {
@@ -47,6 +52,7 @@ const ToDoProviderWrapper = (props) => {
     addToDo,
     setDone,
     setToDoList,
+    initToDo
   };
 
   return (
