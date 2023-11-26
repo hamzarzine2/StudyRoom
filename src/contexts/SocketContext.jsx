@@ -5,7 +5,9 @@ import { io } from "socket.io-client";
 const SocketContext = createContext();
 
 const SocketProvider = ({ children }) => {
-  const [socket, setSocket] = useState(io("http://localhost:4001", {}));
+  const [socket, setSocket] = useState(io("http://localhost:4001", {
+    transports: ["websocket"],
+  }));
   
   const joinRoom = (roomId) => {
     socket.emit("join room", roomId);

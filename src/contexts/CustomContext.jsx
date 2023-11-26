@@ -58,15 +58,6 @@ const CustomProviderWrapper = (props) => {
     divRoot.style.fontFamily = `${custom.fontFamily}`;
     divRoot.style.fontSize = `${custom.fontSize}px`;
     divRoot.style.color = `${custom.fontColor}`;
-    
-    /**const updatedCustom =
-    {
-      backgroundImage: custom.backgroundImage,
-      fontFamily: custom.fontFamily,
-      fontSize: custom.fontSize,
-      fontColor: custom.fontColor,
-    };
-     setCustom(updatedCustom);**/
   };
 
 
@@ -79,7 +70,6 @@ const CustomProviderWrapper = (props) => {
     getbackgroundOptions,
     getMapBackground,
     handleAllChanges,
-    //changeAllCustoms,
     getCustom,
   };
 

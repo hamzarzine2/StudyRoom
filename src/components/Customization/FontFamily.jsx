@@ -21,7 +21,7 @@ const FontFamily = () => {
             <select value={fontFamily} onChange={handleFontFamilyChange}>
                 {getfontFamilyOptions().map((option, index) => (
                     <option key={index} value={option}>
-                        {option.split(",")[0]} {/* Affiche seulement le nom de la police sans les alternatives */}
+                        {option.split(",")[0]}
                     </option>
                 ))}
             </select>

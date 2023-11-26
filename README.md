@@ -1,3 +1,11 @@
+## But
+
+Le but de notre application permet de rejoindre une room et de communiquer entre utilisateurs en temps réel en utilisant des websockets via la librairie "Socket.io".
+
+## Type d’architecture web
+
+Architecture client-serveur en temps réel.
+
 ## Description
 
 - Lien vers [socket.io](https://socket.io/)
@@ -6,7 +14,7 @@
 
 ## Commandes
 
-| Command        |           Description           |
+| Commande       |           Description           |
 | -------------- | :-----------------------------: |
 | npm install    | installe toutes les dépendances |
 | npm run dev    |       lance l'application       |
